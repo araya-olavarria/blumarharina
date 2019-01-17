@@ -1,0 +1,87 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">ACEITE</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='aceite'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo" ng-if="item.cabecera" ng-repeat="item in formulario track by $index">
+                <span class="lbl-campos">{{item.label}}</span><br>
+                <input type="{{item.type}}" class="input_medium" ng-model="item.ngModel" id="{{item.id}}" ng-disabled="item.disabled" ng-blur="fn(((item.fn)?item.fn:''),$index)" style="margin: 0 10px !important;">
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo" ng-if="!item.cabecera" ng-repeat="item in formulario track by $index">
+                <span class="lbl-campos">{{item.label}}</span><br>
+                <input type="{{item.type}}" class="input_medium" ng-model="item.ngModel" id="item.id" ng-disabled="item.disabled" style="margin: 0 10px !important;">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <button type="button" id="" ng-click="getLotes()" name="nextpt" class="btn-medium hvr-shrink">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">Buscar Lotes</span>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>LOTE</th>
+                            <th>PORCION</th>
+                            <th>KILOS</th>
+                            <th>MATERIAL</th>
+                            <th>CANT. ACEITE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in lotes track by $index">
+                            <td>
+                                <input type="text" ng-model="item.lote" id="" name="lote" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <input type="text" ng-model="item.porcion" name="porcion" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <input type="text" ng-model="item.kilos" id="kilos" name="porcion" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <select ng-model="item.material" id="material{{$index}}" class="combo-medium-stretch" ng-options="item as item.text for item in materialesPT track by item.value" disabled>
+
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" id="cantAceite" name="cantAceite" ng-model="item.cantAceite" class="input_small-stretch" ng-blur="sumKilos(item.cantAceite)">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        </br>
+        <center>
+            <button type="button" id="" ng-click="consumir()" name="nextpt" class="btn-medium hvr-shrink">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">NOTIFICAR</span>
+            </button>
+        </center>
+    </form>
+    <br><br>
+</div>

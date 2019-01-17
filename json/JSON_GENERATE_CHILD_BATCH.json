@@ -1,0 +1,38 @@
+{
+    "CREATEBATCH": [{
+            "MATERIAL": "000000000002000123",
+            "BATCH": "SV99990115",
+            "PLANT": "1050",
+            "STORAGE": "P01",
+            "VENDERBATCH": "25025",
+            "PROD_DATE": "20190116"
+
+        },
+        {
+            "MATERIAL": "000000000002000122",
+            "BATCH": "SV99990116",
+            "PLANT": "1050",
+            "STORAGE": "P01",
+            "VENDERBATCH": "25025",
+            "PROD_DATE": "20190116"
+
+        }
+    ],
+    "GOODMOVEMENTS": {
+        "FECHA": "20190115",
+        "CODE": "04",
+        "PLANTA": "1050",
+        "STGE_LOC": "P01",
+        "BATCH": "25025",
+        "MOVETYPE": "309",
+        "VENDRBATCH": "25025",
+        "MATERIAL": "000000000002000046",
+        "MATERIALES": [
+            { "COD": "000000000002000123", "CANTIDAD": "10", "UM": "KG", "MOVEBATCH": "SV99990115" },
+            { "COD": "000000000002000122", "CANTIDAD": "10", "UM": "KG", "MOVEBATCH": "SV99990116" }
+        ]
+    },
+    "ACTUALIZALOTE": {
+
+    }
+}

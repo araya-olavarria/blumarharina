@@ -1,0 +1,197 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">DESCARGAS ABIERTAS</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='buscaoc'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <button ng-click="nuevaDescarga()" type="button" id="btnNuevaguia" name="btnNuevaguia" class="btn-medium-stretch hvr-shrink" style="margin-top:0px !important;">
+                    <img src="img/icon-search.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin:7px 10px 0 0;">Nueva Descarga</span>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 migo">
+                <center>
+                    <span class="lbl-campos">Buscar</span>
+                    <input type="text" ng-model="filterBoat" class="input_small" id="numoc" style="margin: 0 10px !important;">
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 migo">
+                &nbsp;
+            </div>
+            <!--<div class="col-xs-12 col-sm-4 col-md-4 migo">
+                <center>
+                    <span class="lbl-campos">Muelles</span>
+                    <select class="combo-small" name="" id="">
+                        <option value="">Todos los muelles</option>
+                    </select>
+                </center>
+            </div>-->
+            <div class="col-xs-12 col-sm-4 col-md-4 migo" style="text-align:center;">
+                <button type="submit" id="btnbuscar" name="btnbuscar" class="btn-small hvr-shrink" style="margin-top:0px !important;">
+                    <span class="lbl-btn-stretch" style="margin:7px 10px 0 0;">BUSCAR</span>
+                </button>
+            </div>
+        </div>
+
+        <hr>
+        <br>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table ng-init='configPages(true)' id="sample_editable_1" role="grid" aria-describedby="sample_editable_1_info">
+                    <thead>
+                        <tr>
+                            <th>EMBARCACIÓN</th>
+                            <th>FECHA RECALADA</th>
+                            <th>INICIO DESCARGA</th>
+                            <th>TIPO</th>
+                            <th>NUEVA GUIA</th>
+                            <th>VER GUIAS</th>
+                            <th>CERRAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in pendientes | filter:filterBoat | startFromGrid: currentPage[0] * pageSize[0] | limitTo: pageSize[0] ">
+                            <td>{{ item.embarcacion }}</td>
+                            <td>{{ item.fechaRecalada | formatFecha }}</td>
+                            <td>{{ item.fechaDescarga | formatFecha }}</td>
+                            <td>{{item.nombreDescarga}}</td>
+                            <!--<td>
+                                <a ng-if="item.tipoDescarga==1" href="" ng-click="selectPendiente(item)">
+                                    <img src="img/btn-mas.png" class="hvr-shrink">
+                                </a>
+                            </td>-->
+                            <td>
+                                <a href="" ng-click="selectPendiente(item)">
+                                    <img src="img/btn-mas.png" class="hvr-shrink">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="" ng-click="verGuias(item)">
+                                    <img style="width: 27px;" src="img/files-icon.png" class="hvr-shrink">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="" ng-click="cerrarDescarga(item)">
+                                    <img src="img/icon-cerrardoc-gris.png" class="hvr-shrink">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class='btn-group'>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage[0] === 0' ng-click='setPage(1,0)'>&laquo;</button>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage[0] === page.no - 1 || page.tresPV' ng-click='setPage(page.no,0)' ng-repeat='page in pages[0]' ng-hide="page.vsbl">{{((page.tresPV)?page.tresP:page.no)}}</button>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage[0] >= pendientes.length/pageSize[0] - 1' ng-click='setPage(FIN,0)'>&raquo;</button>
+            </div>
+        </div>
+        </br>
+        <hr>
+        <!--<center>
+            <nav aria-label="paginador">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Atrás</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </center>-->
+    </form>
+    </br>
+    <!--Modal-->
+    <div id="myModal" role="dialog" ng-class="showM">
+        <div class="modal-dialog" style="width: 750px;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">GUÍA DE DESPACHO GENERADA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container-tabla center-block table-responsive ">
+                        <div class="datagrid ">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>N° GUÍA</th>
+                                        <th>FECHA GUÍA</th>
+                                        <th>EMBARCACIÓN</th>
+                                        <th>FECHA RECALADA</th>
+                                        <th>KILOS</th>
+                                        <th>DESTINO</th>
+                                        <th>VER PDF</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in guiasOC | startFromGrid: currentPage[1] * pageSize[1] | limitTo: pageSize[1]">
+                                        <!-- | startFromGrid: cuentaPag * cantRegistrosPagina | limitTo: cantRegistrosPagina -->
+                                        <td>{{ item.nGuia }}</td>
+                                        <td>{{ item.fechaGuia | formatFecha}}</td>
+                                        <td>{{ item.embarcacion }}</td>
+                                        <td>{{ item.fechaRecalada | formatFecha }}</td>
+                                        <td>{{ item.kilosEstimados }}</td>
+                                        <td>{{ item.planta }}</td>
+                                        <td>
+                                            <a href="" ng-click="verPDF(item.id)">
+                                                <img style="width: 27px;" src="img/files-icon.png" class="hvr-shrink">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class='btn-group'>
+                            <button type='button' class='btn btn-default' ng-disabled='currentPage[1] === 0' ng-click='setPage(1,1)'>&laquo;</button>
+                            <button type='button' class='btn btn-default' ng-disabled='currentPage[1] === page.no - 1 || page.tresPV' ng-click='setPage(page.no,1)' ng-repeat='page in pages[1]' ng-hide="page.vsbl">{{((page.tresPV)?page.tresP:page.no)}}</button>
+                            <button type='button' class='btn btn-default' ng-disabled='currentPage[1] >= guiasOC.length/pageSize[1] - 1' ng-click='setPage(FIN,1)'>&raquo;</button>
+                        </div>
+                    </div>
+                    </br>
+                    <center>
+                        <button ng-click="closeModal()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                            <img src="img/icon-ok.png" class="icon-btn">
+                            <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                        </button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

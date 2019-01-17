@@ -1,0 +1,24 @@
+{
+    "user":[
+        {
+            "user":"demo",
+            "pass":"demo",
+            "nombre":"Usuario 1"
+        },
+        {
+            "user":"demo2",
+            "pass":"demo2",
+            "nombre":"Usuario 2"
+        }
+    ],
+    "especie":[
+        {
+            "DESCRIPTION":"MANZANAS",
+            "VALUE_CHAR":"ZMANZANAS"
+        },
+        {
+            "DESCRIPTION":"CEREZAS",
+            "VALUE_CHAR":"ZCEREZAS"
+        }
+    ]
+}

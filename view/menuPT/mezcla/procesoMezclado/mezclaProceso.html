@@ -1,0 +1,58 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="mezclaProcesoCTR">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="#" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">PROCESO MEZCLADO</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br></br>
+    <div class="container-tabla center-block table-responsive">
+        <div class="datagrid ">
+            <table>
+                <thead>
+                    <tr>
+                        <th>LOTE</th>
+                        <th>PORCIÓN</th>
+                        <th>EMPAQUE</th>
+                        <th>MATERIAL</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='item in Mezcla track by $index'>
+                        <td>{{item.cabecera[1].ngModel}}</td>
+                        <td>{{item.cabecera[2].ngModel}}</td>
+                        <td>{{item.cabecera[5].ngModell}}</td>
+                        <td>{{item.cabecera[3].ngModel}}</td>
+                        <td><a  class="atabla" ng-click="UPDATE($index)">MODIFICAR</a></td>
+                        <td><a  class="atabla" ng-click="MEZCLA_GO($index)">MEZCLAR</a></td>
+                        <td><a  class="atabla" ng-click="DELETE($index)">ELIMINAR</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </br></br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <button ng-click="addMezcla('/mezclaPT')" class="btn-medium center-block" style="margin-bottom:10px;">
+                <img src="img/icon-mas.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">AGREGAR</span>
+            </button>
+        </div>
+    </div>
+    </br>
+</div>

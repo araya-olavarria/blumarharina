@@ -1,0 +1,9 @@
+{
+    "BAPI": "ZMOV_60001",
+    "RUNTEST": "false",
+    "PARAMETROS": {
+        "PLANTA": "",
+        "LOTE": "",
+        "MATERIAL": ""
+    }
+}

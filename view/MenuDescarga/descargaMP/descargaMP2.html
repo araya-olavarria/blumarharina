@@ -1,0 +1,74 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory();">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">DESCARGA DE MATERIA PRIMA</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='descarga-mp'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" ng-show="{{item.name=='tipo'}}" ng-repeat="item in formulario track by $index">
+                <div ng-if="((['radio'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <input type="{{item.type}}" name="{{item.name}}" id="{{item.id || item.key}}" ng-click="tipoDescarga(item.value)" id="checkdirecta" ng-model="item.ngModel" value="{{item.value}}" class="reidio">
+                        <label for="checkdirecta" class="lbl-campos">{{item.label||item.key}}</label>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <!--<hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" ng-show="{{item.name=='trans'}}" ng-repeat="item in formulario track by $index">
+                <div ng-if="((['radio'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <input type="{{item.type}}" name="{{item.name}}" id="{{item.id}}" id="checkdirecta" ng-model="item.ngModel" value="{{item.value}}" class="reidio">
+                        <label for="checkdirecta" class="lbl-campos">{{item.label||item.key}}</label>
+                    </center>
+                </div>
+            </div>
+        </div>-->
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" ng-show="{{item.type!=='radio'}}" ng-repeat="item in formulario track by $index">
+                <div ng-if="((['text', 'number'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <span class="lbl-campos">{{item.label||item.key}}</span></br>
+                        <input type="{{item.type}}" id="{{item.id}}" name="{{item.id}}" ng-change="{{item.ngChange}}" class="input_medium {{item.class}}" ng-model="item.ngModel" ng-disabled="item.disabled">
+                        <!--<i style="color:red" class="{{item.error.class}}" ng-show="{{item.error.show}}" aria-hidden="true"></i>-->
+                    </center>
+                </div>
+                <div ng-if="((['date'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <span class="lbl-campos">{{item.label||item.key}}</span></br>
+                        <input type="{{item.type}}" class="input_small" ng-model="item.ngModel" id="{{item.id}}" name="{{item.id}}">
+                        <input style="float:right;width: 103px;" type="{{item.time.type}}" class="input_small" ng-model="item.time.ngModel" id="{{item.time.id}}" name="{{item.time.id}}">
+                    </center>
+                </div>
+                <br>
+            </div>
+        </div>
+        </br>
+        <hr>
+    </form>
+    <center>
+        <button ng-click="crearDescarga()" type="button" id="enviaoc" name="btnenviaoc" class="btn-medium hvr-shrink">
+                    <img src="img/icon-next.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin-top:7px;">CONTINUAR</span>
+                </button>
+    </center>
+    <br><br><br>
+
+</div>

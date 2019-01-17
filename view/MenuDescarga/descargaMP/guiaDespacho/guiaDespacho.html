@@ -1,0 +1,287 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="guiaDespacho">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">GUÍA DESPACHO</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='haceguia'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">&nbsp;</div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <center>
+                    <label for="switchCierre" class="lbl-campos">Venta</label>
+                    <label class="switch" id="switchCierre">
+                        <input type="checkbox" ng-model="venta"/>
+                        <span class="slider round"></span>
+                    </label>
+                </center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <center>
+                    <span class="lbl-campos">Embarcación: {{ infoDescarga.embarcacion }}</span></br>
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <center>
+                    <span class="lbl-campos">Fecha Recalada: {{ infoDescarga.fechaRecalada | formatFecha }}</span></br>
+                </center>
+            </div>
+        </div>
+        </br>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <center>
+                    <input type="radio" name="tipoM" ng-click="manual=true" id="tipoM" ng-model="tipo" value="Manual" class="reidio">
+                    <label for="tipoM" class="lbl-campos">Manual</label>
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <center>
+                    <input type="radio" name="tipo" id="tipo" ng-click="manual=false" ng-model="tipo" value="electronica" class="reidio">
+                    <label for="tipo" class="lbl-campos">Electronica</label>
+                </center>
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <center>
+                    <div ng-show="manual">
+                        <span class="lbl-campos">N° Guia</span></br>
+                        <input type="text" id="nGuia" ng-model="nGuia" class="input_medium">
+                    </div>
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <center>
+                    <span class="lbl-campos">Planta</span></br>
+                    <input type="text" ng-model="planta" id="plantas" class="input_medium" />
+                </center>
+            </div>
+        </div>
+        </br>
+    </form>
+    <!-- <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">RUT Guía</span><br>
+                <input oninput="formatRut(this)" ng-model="rutGuia" type="text" class="input_medium" id="rutguia">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Nombre Destino</span>
+                <input type="text" class="input_medium" id="nombredestino">
+            </div>
+        </div>
+        <br>-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+            <span class="lbl-campos">Fecha Guía</span></br>
+            <input type="date" class="input_calendar" ng-model="fechaGuia" id="fechaguia" name="fechaguia">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+            <span class="lbl-campos">Material</span></br>
+            <input type="text" class="input_calendar" ng-model="material" id="material" disabled/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+            <span class="lbl-campos">Nombre chofer</span></br>
+            <input type="text" class="input_calendar" ng-model="nombreChofer" ng-change="getDatosChofer()" id="choferes">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+            <span class="lbl-campos">Rut chofer</span></br>
+            <input type="text" class="input_calendar" ng-model="rutChofer">
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+            <span class="lbl-campos">Patente</span></br>
+            <input type="text" class="input_calendar" ng-model="patente" disabled>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+            <span class="lbl-campos">Romana</span></br>
+            <select name="proveedor" class="combo-medium" ng-model="romana">
+                <option value="elijeromana" selected>Elija la Romana</option>
+                <option value="romana1">Romana 1</option>
+                <option value="romana2">Romana 2</option>
+                <option value="romana3">Romana 3</option>
+                <option value="romana4">Romana 4</option>
+            </select>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <center>
+                <span class="lbl-campos">Kilos</span></br>
+                <input type="text" class="input_calendar" ng-model="kilos">
+            </center>
+        </div>
+    </div>
+    </br>
+    <!--<div class="container-tabla center-block table-responsive">
+        <div class="datagrid ">
+            <table>
+                <thead>
+                    <tr>
+                        <th>MATERIAL</th>
+                        <th>KILOS</th>
+                        <th>VALOR UNITARIO</th>
+                        <th>TOTAL</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="material in materiales track by $index">
+                        <td>
+                            <select ng-model="material.material" name="material" ng-options="item as item.material for item in materialesJson track by item.id" class="combo-medium-stretch">
+                                    <option value="">Seleccione</option>
+                                </select>
+                        </td>
+                        <td>
+                            <input ng-model="material.toneladas" type="number" id="toneladas" name="toneladas" class="input_small-stretch">
+                        </td>
+                        <td>
+                            <input ng-model="material.valor" type="number" id="valorunit" name="valorunit" class="input_small-stretch">
+                        </td>
+                        <td>
+                            <input ng-model="material.total" type="number" id="total" name="total" class="input_small-stretch">
+                        </td>
+                        <td>
+                            <a href="#" ng-click="addMaterial()">
+                                <img src="img/btn-mas.png">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" ng-click="removeMaterial($index)">
+                                <img src="img/btn-borrar.png">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>-->
+    </br>
+    <hr>
+    </br>
+    <center>
+        <button type="submit" id="enviaoc" name="btnenviaoc" ng-click="generaGuia()" class="btn-medium hvr-shrink">
+            <img src="img/icon-guia.png" class="icon-btn">
+            <span class="lbl-btn-stretch" style="margin-top: 7px;">EMITIR GUÍA DESPACHO</span>
+        </button>
+    </center>
+    </form>
+    </br>
+    </br>
+
+    <!--Modal-->
+
+
+    <div id="myModal" role="dialog" ng-class="showM">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">GUÍA DE DESPACHO GENERADA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row center-block">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <center>
+                                <img src="img/icon-ok-big.png" class="icon-btn">
+                                </br>
+                                </br>
+                                <h1>Guía emitida</h1>
+                            </center>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-datagrid center-block" style="width: 369px;">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">GUÍA DESPACHO N°</td>
+                                    <td>{{ nGuia }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </br>
+                    </br>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <center>
+                                <button type="submit" id="enviaresumen" name="btnimprimir" class="btn-small center-block hvr-shrink" style="margin: 0  10px 10px 10px;">
+                                <img src="img/icon-print.png" class="icon-btn">
+                                <span class="lbl-btn-stretch" style="margin-top: 8px;">IMPRIMIR</span>
+                            </button>
+                            </center>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4" ng-show="showAceptar">
+                            <center>
+                                <button ng-click="nuevaGuia()" type="submit" id="enviaresumen" name="btnnuevaguia" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                <img src="img/icon-guia.png" class="icon-btn">
+                                <span class="lbl-btn-stretch" style="margin-top: 8px;">NUEVA GUÍA</span>
+                            </button>
+                            </center>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <center>
+                                <button ng-click="redirectToResumen()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                    <img src="img/icon-ok.png" class="icon-btn">
+                                    <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                                 </button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Modal-->
+
+
+    <div id="myModal" role="dialog" class="modal show" ng-show="loader">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-contentb">
+                <div class="modal-body">
+                    <center>
+                        <img src="./img/loader.svg" alt="">
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

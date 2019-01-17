@@ -1,0 +1,80 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">PROCESO MEZCLADO - PAGINA 2</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+
+    <div class="row">
+        <div id="myModal" role="dialog" ng-class="showM">
+            <div class="modal-dialog" style="width: 750px;">
+                <!-- <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <center>
+                                <span class="txt-cabecera">PAGINA 3 {{loteSeleccionado.lote}}<span class="txt-cabecera">
+                            </center>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="modal-body">
+                <div class="container-tabla center-block table-responsive">
+                    <div class="datagrid ">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>HU</th>
+                                    <th>LOTE</th>
+                                    <th>PORCION</th>
+                                    <th>EMPAQUE</th>
+                                    <th>MATERIAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr ng-repeat="item in formulario track by $index">
+                                <!-- <tr ng-repeat = "sLote in listaLote[0].subLote by track"> -->
+                                    <td>{{loteSeleccionado.HU}}</td>
+                                    <td>{{loteSeleccionado.lote}}</td>
+                                    <td>{{loteSeleccionado.porcion}}</td>
+                                    <td>{{loteSeleccionado.empaque}}</td>
+                                    <td>{{loteSeleccionado.material}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </br>
+            </div>
+
+
+            <center>
+                    <button ng-click="btnGuardarPag3()" type="submit" id="btnGuardarPag3" name="btnGuardarPag3" class="btn-small center-block hvr-shrink"
+                        style="margin: 0 10px 10px 10px;">
+                        <img src="img/icon-ok.png" class="icon-btn">
+                        <span class="lbl-btn-stretch" style="margin-top: 8px;">GRABAR</span>
+                    </button>
+        
+                        <button ng-click="btnAceptar3()" type="submit" id="btnAceptar3" name="btnAceptar3" class="btn-small center-block hvr-shrink"
+                            style="margin: 0 10px 10px 10px;">
+                            <img src="img/icon-ok.png" class="icon-btn">
+                            <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                        </button>
+                    </center>
+                        </div>
+</div>

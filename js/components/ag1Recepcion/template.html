@@ -1,0 +1,195 @@
+<div id="reset-form" ng-show="oform.show" class="portlet box {{oform.color||'purple'}} col-xs-12 col-sm-12 col-md-12">
+    <style>
+        {{oform.stylePage}}
+    </style>
+    <div class="portlet-title">
+        <div class="tools" ng-click="exit()">
+            <i class="fa fa-power-off icon-menu icon-off"  aria-hidden="true"></i>
+        </div>
+        <div class="caption">
+            <i class="fa fa-arrow-circle-left icon-menu" aria-hidden="true" ng-click="oform.volver(oform.back)"></i>
+            <div class="title">{{oform.title}}<span ng-if="oform.retorna.mostrar" class="retorna-bins"> {{oform.retorna.text}}<input ng-click="oform.retornaBins(oform.retorna.ngModel)" class="check-retorna" type="checkbox" ng-model="oform.retorna.ngModel"></span></div></div>
+    </div>
+    <div class="portlet-body col-xs-12 col-sm-12 col-md-12">
+        <div class="table-responsive" ng-show="oform.headTable">
+            <table class="table table-bordered table-striped table-condensed flip-content">
+                <thead class="flip-content">
+                <tr>
+                    <th ng-repeat="item in oform.information.colum track by $index">{{item.colum}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ng-repeat="item in oform.information.row track by $index" class="numeric">{{item.row}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-repeat="item in oform.arrResumen track by $index">
+            <div id="form-group">
+                <label for="exampleName">{{item.name}}</label> :
+                <label for="exampleValue">{{item.value}}</label>
+            </div>
+        </div>
+        <div class="cont-table-ov">
+            <table class="table table-striped table-bordered table-hover" ng-show="oform.titleResumen">
+                <tr ng-repeat="items in oform.arrResumenLote.colum track by $index">
+                    <th scope="col" ng-repeat="item in items track by $index"><span>{{ item.value}}</span></th>
+                </tr>
+                <tr ng-repeat="items in oform.arrResumenLote.row track by $index">
+                    <td ng-repeat="item in items track by $index">
+                        <span ng-if="item.type=='label'" ng-click="item.evenClick(item.id,item.data)">{{item.type=="select"? item.name.DESCRIPTION : item.name}}</span>
+                        <span ng-if="item.type=='text'"><input type="{{item.type}}" style="{{item.style}}" ng-click="item.eventBlur(item,items)" ng-value="{{item.value}}" ng-model="item.ngModel"></span>
+                        <span ng-if="item.type=='link'"><a href="{{item.ruta}}" target="_blank">{{item.value}}</a></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <form class="portlet-body row" role="form">
+            <div class="form-body col-xs-12 col-sm-12 col-md-12">
+                <div class="row form-group col-xs-{{(item.type==='button' || item.tam===12)?'12':'6';}} col-sm-{{item.tam || '10'}} col-md-{{item.tam || '10'}}" ng-repeat="item in oform.items track by $index" ng-if="!item.visible">
+                    <div ng-show="((item.type==='button')?true:false)" class="clearfix">
+                        <button class="btn col-md-12 {{item.class}}" style="{{item.style}}" ng-click="item.event(oform);oform.event(oform);oform.addObject(itemLote.id,item)">{{item.nombre}}</button>
+                    </div>
+                    <div ng-if="item.type=='icon'" style="text-align:center;">
+                        <span class="{{item.class}}"></span>
+                    </div>
+                    <div ng-if="(item.type == 'text' || item.type == 'time' || item.type == 'number')">
+                        <label ng-hide="item.visible" class="row  col-sm-12 col-md-12" style="">{{item.caption||item.key}}</label>
+                        <div class="col-md-12">
+                            <span ng-hide="item.visible" ng-if="item.iconBar" ng-click="oform.startSacan(item)" class="fa fa-barcode cod-bar" aria-hidden="true"></span>
+                            <span ng-hide="item.visible" class="{{item.iconLeft}}" ng-click="oform.eventClickLeft(item)"></span>
+                            <input autocomplete="{{item.autocomplete}}" ng-hide="item.visible" id="{{item.id}}" ng-change="oform.eventChange(item)"  ng-blur="item.eventBlur(item,oform.items);oform.eventBlur(oform,item);" maxlength="{{item.maxlength}}" max="{{item.max}}" type="{{item.type}}" id="{{item.id}}" ng-readonly="item.readonly"  maxlength="{{item.maxlength}}" class="form-control {{item.class}}" ng-value="{{item.ngValue}}" ng-class="item.classError"  ng-disabled="item.disabled" ng-keypress="($event.charCode==13)?item.eventEnter(item,oform.items):return;"  ng-model="item.ngModel" placeholder="{{item.placeholder||''}}" >
+                            <span ng-hide="item.visible" class="{{item.iconRight}}" ng-click="oform.eventClickRight(items,item);item.eventClickRight(items,item);"></span>
+                            <span ng-if="item.useCheckbox"><input type="checkbox" ng-model="item.ngModelCb" class="cbPrimario" ng-click="item.eventClickCb(item.ngModelCb,item);"></span>
+                        </div>
+                    </div>
+                    <div ng-if="item.type == 'date' && !item.visible">
+                        <label ng-hide="item.visible" class="row  col-sm-12 col-md-12" style="">{{item.caption||item.key}}</label>
+                        <div class="col-md-12">
+                            <span ng-if="item.iconBar" ng-click="oform.startSacan(item)" class="fa fa-barcode cod-bar" aria-hidden="true"></span><input ng-hide="item.visible" ng-blur="item.eventBlur(item);oform.eventBlur(oform);" maxlength="{{item.maxlength}}" ui-date="item.dateOptions" type="text" id="{{item.id}}" ng-readonly="item.readonly" class="form-control {{item.class}}" ng-value="{{item.ngValue}}" ng-class="item.classError"  ng-disabled="item.disabled" ng-keypress="($event.charCode==13)?item.eventEnter(item):return;"  ng-model="item.ngModel" placeholder="{{item.placeholder||''}}" >
+                        </div>
+                    </div>
+                    <div ng-if="item.type == 'file' && !item.visible">
+                        <label ng-hide="item.visible" class="row  col-sm-12 col-md-12" style="">{{item.caption||item.key}}</label>
+                        <div class="col-md-12" >
+                            <input ng-hide="item.visible" onchange="angular.element(this).scope().uploadFile(this.files,this)" name="file" id="{{item.id}}"  type="{{item.type}}" class="form-control"  ng-model="item.ngModel" ng-true-value="'SI'" ng-false-value="'NO'" >
+                        </div>
+                    </div>
+                    <div ng-if="item.type=='checkbox' && !item.visible">
+                        <label class="mt-checkbox">
+
+                            {{item.caption||item.key}} <input type="{{item.type}}" ng-model="item.ngModel"  ng-hide="item.visible"  ng-true-value="'SI'" ng-false-value="'NO'" ng-click="item.eventCLick(item)">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div ng-if="item.type=='select' && !item.visible">
+                        <label  class="row  col-sm-12 col-md-12">{{item.caption||item.key}}</label>
+                        <div class="col-md-12">
+                            <select id="{{item.id}}" ng-change="item.eventChange(oform.items,item);oform.eventChange(oform.items,item)" class="form-control {{item.classError}}"  ng-model="item.ngModel" width="item.width"  ng-disabled="item.disabled" ng-options="option as option.text||option.DESCRIPTION for option in item.options track by option.VALUE_CHAR">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="container items-contenedor">
+                    <div class="scroll-items">
+                        <div ng-repeat="itemLotes in oform.arrLote track by $index">
+                        <div class="row form-group col-xs-12 col-sm-{{itemLote.tam || '12'}} col-md-{{itemLote.tam || '12'}}" style="{{itemLote.styleDiv}}" ng-repeat="itemLote in itemLotes" ng-if="!itemLote.visible">
+                            <span ng-if="itemLote.type=='icon'" class="icon_detail">
+                                <span class="{{itemLote.class}}" ng-click="itemLote.key=='delete'?oform.deleteArray(itemLote.id,oform):oform.addCodLote(itemLotes);"></span>
+                            </span>
+                            <div ng-show="((['text','time','number'].indexOf(itemLote.type)>-1)?true:false)">
+                                <label ng-hide="itemLote.visible" class="row  col-sm-12 col-md-12" style="">{{itemLote.caption||itemLote.key}}</label>
+                                <div class="col-md-{{itemLote.tamText}}">
+                                    <span ng-if="itemLote.iconBar" ng-click="oform.startSacan(itemLote)" class="fa fa-barcode cod-bar {{itemLote.class}}" aria-hidden="true"></span>
+                                    <span ng-hide="itemLote.visible" class="{{itemLote.iconLeft}}" ng-click="oform.eventClickLeft(itemLote)"></span>
+                                    <input ng-hide="itemLote.visible" id="{{itemLote.id}}" ng-value="{{itemLote.ngValue}}" value="{{itemLote.ngValue}}" ng-keyup="itemLote.eventKeyup(itemLotes,itemLote);oform.eventKeyup(itemLotes,itemLote)" ng-blur="oform.eventBlur(oform);itemLote.eventBlur(itemLote,itemLotes)" ng-keypress="($event.charCode==13)?itemLote.eventEnter(itemLote,itemLotes):return;($event.charCode==13)?oform.eventEnter(itemLote):return;" type="{{itemLote.type}}" maxlength="{{itemLote.maxlength}}" class="form-control {{itemLote.class}}" ng-readonly="itemLote.readonly" ng-class="itemLote.classError" width="{{itemLote.width}}"  ng-disabled="itemLote.disabled" ng-model="itemLote.ngModel" placeholder="{{itemLote.placeholder||''}}">
+                                    <span ng-if="itemLote.useCheckbox"><input type="checkbox" ng-model="itemLote.ngModelCbPP" class="cbPrimario" ng-click="oform.habilitaPP(itemLotes,itemLote,itemLote.ngModelCbPP);"></span>
+                                </div>
+                            </div>
+                            <div ng-if="itemLote.type == 'date'">
+                                <label ng-hide="itemLote.visible" class="row  col-sm-12 col-md-12" style="">{{itemLote.caption||itemLote.key}}</label>
+                                <div class="col-md-12">
+                                    <input ng-hide="itemLote.visible" maxlength="{{itemLote.maxlength}}"  type="{{itemLote.type}}" id="{{itemLote.id}}" ng-readonly="itemLote.readonly"  class="form-control {{itemLote.class}}" ng-value="{{itemLote.ngValue}}" ng-class="itemLote.classError"  ng-model="itemLote.ngModel" placeholder="{{itemLote.placeholder||''}}" >
+                                </div>
+                            </div>
+                            <div ng-if="itemLote.type==='select'" >
+                                <label ng-hide="itemLote.visible" class="row  col-sm-12 col-md-12">{{itemLote.caption||itemLote.key}}</label>
+                                <div class="col-md-{{itemLote.tamText}}">
+                                    <select ng-hide="itemLote.visible" ng-change="itemLote.eventChange(itemLotes,itemLote);oform.eventChangeDestare(itemLotes,itemLote);" class="form-control {{itemLote.classError}}"   ng-model="itemLote.ngModel" width="{{itemLote.width}}"  ng-disabled="itemLote.disabled" ng-options="option as option.text||option.DESCRIPTION for option in itemLote.options track by option.VALUE_CHAR">
+                                    </select>
+                                    <span ng-if="itemLote.useCheckbox"><input type="checkbox" ng-model="itemLote.ngModelCb" class="cbPrimario" ng-click="oform.validaPrimario2(itemLotes,itemLote.ngModelCb);oform.eventClickCheckbox(itemLote,itemLotes,itemLote.ngModelCb)"></span>
+                                    <span ng-if="itemLote.iconLeft2" ng-class="itemLote.classIcon2" ng-click="oform.addDestare(itemLote.arrDest,itemLotes.id)"></span>
+                                </div>
+                            </div>
+                            <div ng-if="itemLote.arrDest.length>0" class="portlet-body row destare-container{{itemLote.numContenedor}}">
+                                <div  ng-repeat="itemDestares in itemLote.arrDest track by $index ">
+                                    <div class="row form-group col-xs-12 col-sm-{{itemDest.tam || '12'}} col-md-{{itemDest.tam || '12'}}" style="{{itemDest.styleDiv}}" ng-repeat="itemDest in itemDestares">
+                                        <div ng-show="((['text','time','number'].indexOf(itemDest.type)>-1)?true:false)">
+                                            <label ng-hide="itemDest.visible" class="row  col-sm-12 col-md-12" style="">{{itemDest.caption||itemDest.key}}</label>
+                                            <div class="col-md-{{itemDest.tamText}}">
+                                                <span ng-if="itemDest.iconBar" ng-click="oform.startSacan(itemLote)" class="fa fa-barcode cod-bar {{itemDest.class}}" aria-hidden="true"></span>
+                                                <span ng-hide="itemDest.visible" class="{{itemDest.iconLeft}}" ng-click="oform.eventClickLeft(itemDest)"></span>
+                                                <input ng-hide="itemDest.visible" id="{{itemDest.id}}" ng-value="{{itemDest.ngValue}}" value="{{itemDest.ngValue}}" ng-keyup="itemDest.eventKeyup(itemDest);oform.eventKeyup(itemLotes)" ng-blur="oform.eventBlur(oform,itemDest,itemDest.key,itemDest.id)" ng-keypress="($event.charCode==13)?itemDest.eventEnter(itemDest,itemDest.id):return;($event.charCode==13)?oform.eventEnter(itemDest,itemDest.id):return;" type="{{itemDest.type}}" maxlength="{{itemDest.maxlength}}" class="form-control {{itemDest.class}}" ng-readonly="itemDest.readonly" ng-class="itemDest.classError" width="{{itemDest.width}}"  ng-disabled="itemDest.disabled" ng-model="itemDest.ngModel" placeholder="{{itemDest.placeholder||''}}">
+                                            </div>
+                                        </div>
+                                        <div ng-if="itemDest.type==='select'" >
+                                            <label ng-hide="itemDest.visible" class="row  col-sm-12 col-md-12">{{itemDest.caption||itemDest.key}}</label>
+                                            <div class="col-md-{{itemDest.tamText}}">
+                                                <select ng-hide="itemDest.visible" ng-change="oform.eventBlur(oform.arrLote);(itemDest.key==='Tipo envase')?oform.eventChangeDestare(itemDestares,itemDest):'';"  class="form-control {{itemDest.classError}}"   ng-model="itemDest.ngModel" width="{{itemDest.width}}"  ng-disabled="itemDest.disabled" ng-options="option as option.text||option.DESCRIPTION for option in itemDest.options track by option.VALUE_CHAR">
+                                                </select>
+                                                <span ng-if="itemDest.useCheckbox"><input type="checkbox" ng-model="itemDest.ngModelCb" class="cbPrimario" ng-click="oform.validaPrimario(itemDest.arrDest,itemDest.ngModelCb,itemDestares);oform.eventClickCheckbox(itemDest,itemDestares,itemDest.ngModelCb)"></span>
+                                                <span ng-if="itemDest.iconLeft2" ng-class="itemDest.classIcon2" ng-click="oform.addDestare(oform.arrDest,itemLote)"></span>
+                                                <span ng-if="itemDest.iconLeft" ng-class="itemDest.classIcon" ng-click="oform.deleteDestare(itemLote.arrDest,itemDest.id,itemDest)"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-if="itemLote.type == 'file'">
+                                <label ng-hide="itemLote.visible" class="row  col-sm-12 col-md-12" style="">{{itemLote.caption||itemLote.key}}</label>
+                                <div class="col-md-{{itemLote.tamText}}" >
+                                    <input ng-hide="itemLote.visible" name="file" id="{{itemLote.id}}" onchange="angular.element(this).scope().uploadFile(this.files,this)" idFile="{{itemLote.id}}" type="{{itemLote.type}}" class="form-control"  ng-model="itemLote.ngModel" >
+                                </div>
+                            </div>
+                            <div ng-if="itemLote.type==='button'" class="clearfix">
+                                <button class="btn col-md-12 {{itemLote.class}}" style="{{itemLote.style}}" ng-click="itemLote.event(itemLote.id);oform.deleteArray(itemLote.id,oform);">{{itemLote.nombre}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-bordered table-hover">
+                <tr ng-repeat="items in oform.arrResumenBottom.colum track by $index">
+                    <th scope="col" ng-repeat="item in items track by $index">
+                        <span ng-if="item.type!='checkbox'">{{ item.value}}</span>
+                        <span ng-if="item.type=='checkbox'"><input type="{{item.type}}" style="{{item.style}}" ng-click="item.eventClick(items,item)" style="{{item.style}}"  ng-model="item.ngModel"></span>
+                    </th>
+                </tr>
+                <tr ng-repeat="items in oform.arrResumenBottom.row track by $index">
+                    <td ng-repeat="item in items track by $index">
+                        <span ng-if="item.type=='label'" class="{{item.classIcon}}" ng-click="item.evenClick(item.id,item.data,item)">{{item.type=="select"? item.name.DESCRIPTION : item.name|| item.value}}</span>
+                        <span ng-if="item.type=='orden'" >{{item.orden}}</span>
+                        <span ng-if="item.type=='text' || item.type=='checkbox' || item.type=='number' || item.type=='time' || item.type=='date'"><input type="{{item.type}}" maxlength="{{item.maxlength}}" class="{{item.classError}}" style="{{item.style}}" ng-readonly="item.readonly" ng-keypress="($event.charCode==13)?item.eventEnter(item,items):return;" ng-keyup="item.eventKeyup(item,items)" ng-blur="item.eventBlur(item)" ng-click="item.eventClick(items,item.ngModel)" style="{{item.style}}" ng-value="{{item.value}}" ng-model="item.ngModel"></span>
+                        <span ng-if="item.type=='link'"><a href="{{item.ruta}}" target="_blank">{{item.value}}</a></span>
+                        <span ng-if="item.type=='icon'"><li class="{{item.class}}"></li></span>
+                        <span ng-if="item.type==='select'" class="col-md-{{item.tamText}}">
+                            <select  ng-hide="item.visible" ng-change="oform.eventBlur(oform.arrLote);item.eventChange(item,items)"  class="form-control {{item.classError}}"   ng-model="item.ngModel" width="{{item.width}}"  style="{{item.style}}" ng-disabled="item.disabled" ng-options="option as option.text||option.DESCRIPTION for option in item.options track by option.VALUE_CHAR">
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-actions right1 col-xs-12 col-sm-12 col-md-12">
+                <button type="button" class="btn blue btn-bt" ng-click="oform.bluetooth()" ng-hide="oform.hideBt"><span class="fa fa-bluetooth icon-bt"></span></button>
+                <button type="button" class="btn green" ng-click="oform.verRecepciones()" ng-hide="oform.hideBt">Ver recepciones</button>
+                <button type="button" class="btn default" ng-click="oform.cancel()" ng-hide="oform.hideCancel">{{oform.cancelar || "Cancelar"}}</button>
+                <button type="button" class="btn green" ng-click="oform.etiqueta()" ng-hide="oform.hideEtiqueta">{{oform.btnEtiqueta}}</button>
+                <button type="button" class="btn green" ng-click="oform.guardar()" ng-hide="oform.hideGuardar">{{oform.textGuardar || "Guardar"}}</button>
+                <button type="button" class="btn green" ng-click="oform.submit(oform)" ng-hide="oform.hideContinue">{{oform.btnContinue}}</button>
+            </div>
+        </form>
+        <ag1-alert oalert="oalert"></ag1-alert>
+    </div>
+</div>

@@ -1,0 +1,178 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">GUÍA DESPACHO</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='haceguia'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" ng-if="item.cabecera" ng-repeat="item in formulario track by $index">
+                <div ng-if="((['radio'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <input type="{{item.type}}" name="{{item.name}}" id="{{item.id}}" id="{{item.id}}" ng-model="item.ngModel" value="{{item.value}}" ng-click="changeTransporte(item)" class="reidio">
+                        <label for="{{item.id}}" class="lbl-campos">{{item.label||item.key}}</label>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">&nbsp;</div>
+            <div class="col-xs-12 col-sm-12 col-md-6" ng-if="!item.cabecera" ng-repeat="item in formulario track by $index">
+                <div ng-if="((['checkbox'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <label for="switchCierre" class="lbl-campos">{{item.label || item.key}}</label>
+                        <label class="switch" id="{{item.id}}">
+                            <input type="{{item.type}}" ng-click="venta()" ng-model="item.ngModel"/>
+                            <span class="slider round"></span>
+                        </label>
+                        <br>
+                        <br>
+                    </center>
+                </div>
+                <div ng-if="((['label'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <span class="lbl-campos">{{item.label}}: {{item.value}}</span></br>
+                    </center>
+                    <hr>
+                </div>
+                <div ng-if="((['radio'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <input type="{{item.type}}" name="{{item.name}}" id="{{item.id}}" ng-click="changeType(item)" id="checkdirecta" ng-model="item.ngModel" value="{{item.value}}" class="reidio">
+                        <label for="{{item.id}}" class="lbl-campos">{{item.label||item.key}}</label>
+                    </center>
+                    <br>
+                </div>
+                <div ng-if="((['text', 'number'].indexOf(item.type) > -1) ? true : false)">
+                    <center ng-show="item.show">
+                        <span class="lbl-campos">{{ item.label }}</span></br>
+                        <input type="{{item.type}}" id="{{item.id}}" ng-model="item.ngModel" ng-disabled="item.disabled" class="input_medium">
+                    </center>
+                    <br>
+                </div>
+                <div ng-if="((['date'].indexOf(item.type) > -1) ? true : false)">
+                    <center>
+                        <span class="lbl-campos">{{item.label||item.key}}</span></br>
+                        <input type="{{item.type}}" class="input_calendar" ng-model="item.ngModel" id="{{item.id}}" name="{{item.id}}">
+                    </center>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="col-xs-12 col-md-6 col-sm-6" ng-if="item.show" ng-repeat="item in formVenta track by $index">
+                <center>
+                    <span class="lbl-campos">{{item.label||item.key}}</span></br>
+                    <input type="{{item.type}}" class="{{item.class}}" ng-model="item.ngModel" id="{{item.id}}" ng-change="item.ngChange" ng-disabled="item.disabled">
+                    <button ng-if="item.buton" ng-click="getDataCL()" type="button" id="nextpt" name="nextpt" class="btn-chico hvr-shrink">
+                        <center><img src="img/icon-search.png"></center>
+                    </button>
+
+                </center>
+            </div>
+            <!--<div class="col-xs-12 col-md-6 col-sm-6">
+                <center>
+                    <button type="button" ng-click="" class="btn-medium hvr-shrink">
+                            <img src="img/icon-guia.png" class="icon-btn">
+                            <span class="lbl-btn-stretch" style="margin-top: 7px;">Buscar Cliente</span>
+                        </button>
+                </center>
+            </div>-->
+        </div>
+    </form>
+    <hr>
+    </br>
+    <center>
+        <button type="button" id="enviaoc" name="btnenviaoc" ng-click="generaGuia()" class="btn-medium hvr-shrink">
+            <img src="img/icon-guia.png" class="icon-btn">
+            <span class="lbl-btn-stretch" style="margin-top: 7px;">EMITIR GUÍA DESPACHO</span>
+        </button>
+    </center>
+    </form>
+    </br>
+    </br>
+    <!--Modal-->
+    <div id="myModal" role="dialog" class="modal show" ng-show="modalShow">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">GUÍA DE DESPACHO GENERADA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row center-block">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <center>
+                                <img src="img/icon-ok-big.png" class="icon-btn">
+                                </br>
+                                </br>
+                                <h1>Recepción realizada</h1>
+                            </center>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="modal-datagrid center-block" style="width: 369px;">
+                        <table>
+                            <tbody>
+                                <tr ng-repeat="item in msg">
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">{{item.tipo}}</td>
+                                    <td>{{ item.descripcion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </br>
+                    </br>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <center>
+                                <button type="submit" id="enviaresumen" name="btnimprimir" class="btn-small center-block hvr-shrink" style="margin: 0  10px 10px 10px;">
+                                <img src="img/icon-print.png" class="icon-btn">
+                                <span class="lbl-btn-stretch" style="margin-top: 8px;">IMPRIMIR</span>
+                            </button>
+                            </center>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <center>
+                                <button ng-click="nuevaGuia()" type="submit" id="enviaresumen" name="btnnuevaguia" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                <img src="img/icon-guia.png" class="icon-btn">
+                                <span class="lbl-btn-stretch" style="margin-top: 8px;">NUEVA GUÍA</span>
+                            </button>
+                            </center>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-4">
+                            <center>
+                                <button ng-click="aceptar()" type="button" id="enviaresumen" name="btnenviaresumen" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                    <img src="img/icon-ok.png" class="icon-btn">
+                                    <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                                 </button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

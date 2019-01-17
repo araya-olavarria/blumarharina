@@ -1,0 +1,119 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="migoMPPropia">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">RECEPCIÓN MP</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 migo">
+            <span class="lbl-campos">Lote</span>
+            <input ng-model="lote" type="number" class="input_small" id="lote" placeholder="">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 migo">
+            <span class="lbl-campos">Proveedor</span>
+            <input ng-model="proveedor" type="text" class="input_medium" id="proveedor" placeholder="proveedor1" disabled>
+        </div>
+    </div>
+    <hr>
+    </br>
+    <form id='recep-oc'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Embarcación</span></br>
+                <select class="combo-medium" ng-model="embarcacion">
+                    <option value="">Seleccione el Embarcacion</option>
+                    <option value="1">TEST</option>
+                </select>
+            </div>
+            <!--<div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Procedencia</span></br>
+                <select ng-model="procedencia" name="procedencia" class="combo-medium">
+                    <option value="" selected>Procedencia</option>
+                    <option value="svicente">San Vicente</option>
+                    <option value="lejano">Puerto Lejano</option>
+                    <option value="alla">De por allá</option>
+                </select>
+            </div>-->
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Material</span></br>
+                <input ng-model="materialSel" type="text" id="material" name="material" class="input_medium" placeholder="Sardina" disabled>
+            </div>
+        </div>
+        </br>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                <button ng-click="displayTable=true" type="submit" id="enviadetalle" name="btndetalle" class="btn-medium-stretch hvr-shrink">
+                    <span class="lbl-btn-stretch" style="margin-top:7px;">DETALLAR</span>
+                </button>
+            </div>
+        </div>
+        </br>
+        </br>
+        <div ng-show="displayTable" class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>MATERIAL</th>
+                            <th>PORCENTAJE</th>
+                            <th>KILOS</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="material in materiales track by $index">
+                            <td>
+                                <select class="combo-medium-stretch" ng-model="material.material" ng-change="validaMaterial(material.material, $index)" ng-options="item as item.material for item in materialesJson track by item.id">
+                                   <option value="">Seleccionar</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" ng-model="material.porcentaje" ng-change="calculaKilos(material, $index)" id="porcentaje" class="input_small-stretch">
+                            </td>
+                            <td>
+                                <input type="number" ng-model="material.kilosedit" id="kilosedit" class="input_small-stretch" readOnly>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="addMaterial()">
+                                    <img src="img/btn-mas.png">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="removeMaterial($index)">
+                                    <img src="img/btn-borrar.png">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </br>
+        <hr>
+        </br>
+        <center>
+            <button ng-click="redirectToResumen()" id="enviaoc" name="btnenviaoc" class="btn-medium hvr-shrink">
+                <img src="img/icon-next.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">CONTINUAR</span>
+            </button>
+        </center>
+    </form>
+    </br>
+    </br>
+</div>

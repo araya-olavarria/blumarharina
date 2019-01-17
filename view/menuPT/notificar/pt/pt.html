@@ -1,0 +1,179 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">NOTIFICAR PT</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='notifpt'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6migo" style="text-align:center;">
+                <button type="button" id="btnscan" ng-click="scan()" name="btnscan" class="btn-medium-stretch hvr-shrink">
+                    <img src="img/icon-barcode.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin:7px 10px 0 0;">ESCANEAR</span>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <span class="lbl-campos">Fecha Fabricación</span>
+                <input type="date" class="input_medium" ng-model="fechaNot" id="fechaNot" style="margin: 0 10px !important;">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <span class="lbl-campos">Hora Fabricación</span>
+                <input type="time" class="input_medium" value="{{ horaNot | date:'H:m' }}" ng-model="horaNot" id="horaNot" style="margin: 0 10px !important;">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">Cantidad</span><br>
+                    <input type="text" class="input_medium" ng-model="cantidad" id="cantpt" style="margin: 0 10px !important;">
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">Material</span><br>
+                    <input name="material" id="material" ng-model="material" class="combo-medium" style="background: #D6D6D6;" />
+                </center>
+            </div>
+        </div>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>LOTE</th>
+                            <th>PORCIÓN</th>
+                            <th>ALMACÉN</th>
+                            <th>ENVASE</th>
+                            <th>ETIQUETA</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="text" id="lote" ng-model="lote" name="lote" class="input_small-stretch">
+                            </td>
+                            <td>
+                                <input type="text" id="porcion" ng-model="porcion" name="porcion" class="input_small-stretch">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="almacen" name="almacen" id="almacen" class="input_small-stretch">
+                            </td>
+                            <td>
+                                <input type="text" id="envase" ng-model="envase" name="envase" class="input_small-stretch">
+                            </td>
+                            <td>
+                                <input type="text" id="hu" ng-model="hu" name="hu" class="input_small-stretch">
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <img src="img/btn-borrar.png">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        </br>
+        <center>
+            <button type="button" ng-click="guardarNot()" id="nextpt" name="nextpt" class="btn-medium hvr-shrink">
+                <img src="img/icon-save.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">GUARDAR</span>
+            </button>
+        </center>
+    </form>
+    <br><br>
+    <!--Modal-->
+
+
+    <div id="myModal" role="dialog" ng-class="showM">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">GUÍA DE DESPACHO GENERADA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row center-block">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <center>
+                                <img src="img/icon-ok-big.png" class="icon-btn">
+                                </br>
+                                </br>
+                                <h1>{{ mensajeModal }}</h1>
+                            </center>
+                        </div>
+                    </div>
+                    </br>
+                    </br>
+                    <div class="row">
+                        <!--<div class="col-xs-12 col-sm-12 col-md-4">
+                            <center>
+                                <button type="submit" id="enviaresumen" name="btnimprimir" class="btn-small center-block hvr-shrink" style="margin: 0  10px 10px 10px;">
+                                <img src="img/icon-print.png" class="icon-btn">
+                                <span class="lbl-btn-stretch" style="margin-top: 8px;">IMPRIMIR</span>
+                            </button>
+                            </center>
+                        </div>-->
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <center>
+                                <button ng-click="closeModal()" type="button" id="enviaresumen" name="btnenviaresumen" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                    <img src="img/icon-ok.png" class="icon-btn">
+                                    <span class="lbl-btn-stretch" style="margin-top: 8px;">OK</span>
+                                 </button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Modal-->
+
+
+    <div id="myModal" role="dialog" class="modal show" ng-show="loader">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-contentb">
+                <div class="modal-body">
+                    <center>
+                        <img src="./img/loader.svg" alt="">
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</div>

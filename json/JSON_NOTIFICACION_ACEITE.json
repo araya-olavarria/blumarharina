@@ -1,0 +1,58 @@
+{
+    "BAPI": " BAPI_REPMANCONF1_CREATE_MTS",
+    "PARAMETROS": {
+        "FLAGS": {
+            "BCKFLTYPE": "11",
+            "RP_SCRAPTYPE": "",
+            "ACTIVITIES_TYPE": "",
+            "COMPONENTS_TYPE": "1"
+        },
+        "DATAGEN": {
+            "PDC_NUMBER": "",
+            "MATERIALNR": "000000000004001217",
+            "PRODPLANT": "1050",
+            "PLANPLANT": "1050",
+            "STORAGELOC": "03",
+            "PRODVERSION": "V0_0",
+            "PRODLINE": "PH_SV",
+            "BATCH": "LOTPTIA1",
+            "POSTDATE": "20181105",
+            "DOCDATE": "20181105",
+            "DOCHEADERTXT": "P_01",
+            "BACKFLQUANT": 0,
+            "SCRAPQUANT": "",
+            "UNITOFMEASURE": "KG"
+        },
+        "GOODSMOVEMENTS": [],
+        "CHARACTERISTICS_BATCH": [{
+                "CHAR_NAME": "ZTVNMPPO",
+                "CHAR_VALUE": "12"
+            },
+            {
+                "CHAR_NAME": "ZENVHARINA",
+                "CHAR_VALUE": "JUMBO"
+            },
+            {
+                "CHAR_NAME": "ZCALINICIAL",
+                "CHAR_VALUE": "A"
+            },
+            {
+                "CHAR_NAME": "ZCALFINAL",
+                "CHAR_VALUE": "A"
+            },
+            {
+                "CHAR_NAME": "ZESPECIEHARI",
+                "CHAR_VALUE": "JUR"
+            },
+            {
+                "CHAR_NAME": "ZCODIGOPLAN",
+                "CHAR_VALUE": "08106"
+            },
+            {
+                "CHAR_NAME": "ZMARCA",
+                "CHAR_VALUE": "BLUMAR"
+            }
+
+        ]
+    }
+}

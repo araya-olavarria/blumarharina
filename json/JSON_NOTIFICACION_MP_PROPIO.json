@@ -1,0 +1,60 @@
+{
+    "OBJETOENTRADA": [{
+            "BAPI": "BAPI_REPMANCONF1_CREATE_MTS",
+            "PARAMETROS": {
+                "CHARACTERISTICS_BATCH": [],
+                "DATAGEN": {
+                    "BACKFLQUANT": 321321,
+                    "BATCH": "RE00000000",
+                    "DOCDATE": "20181220",
+                    "DOCHEADERTXT": "312312",
+                    "MATERIALNR": "000000000002000040",
+                    "PDC_NUMBER": "",
+                    "PLANPLANT": "1500",
+                    "POSTDATE": "20181220",
+                    "PRODLINE": "",
+                    "PRODPLANT": "1500",
+                    "PRODVERSION": "V0_1",
+                    "SCRAPQUANT": "0,0000",
+                    "STORAGELOC": "104 ",
+                    "UNITOFMEASURE": "KG"
+                },
+                "FLAGS": {
+                    "ACTIVITIES_TYPE": "1",
+                    "BCKFLTYPE": "01",
+                    "COMPONENTS_TYPE": "1",
+                    "RP_SCRAPTYPE": ""
+                },
+                "GOODSMOVEMENTS": [{
+                    "BATCH": "LOTE_UNICO",
+                    "ENTRY_QNT": "0 ",
+                    "ENTRY_UOM": "KG",
+                    "MATERIAL": "6000138",
+                    "MOVE_TYPE": "",
+                    "PLANT": "1500",
+                    "STGE_LOC": "104 "
+                }]
+            }
+        },
+        {
+            "BAPI": "BAPI_GOODSMVT_CREATE",
+            "PARAMETROS": {
+                "ALMACEN": "104 ",
+                "ALMACENDESTINO": "P01 ",
+                "CENTRO": "1500",
+                "CENTRO_DESTINO": "1050",
+                "CODE": "04",
+                "CONTRAORDEN": "false",
+                "CONTRAPEDIDO": "false",
+                "FECHA": "20181220",
+                "GUIA": "312312",
+                "MATERIALES": [],
+                "MOVIMIENTO": 301,
+                "PEDIDO": "",
+                "RESULTADO_BAPI": true,
+                "TIPO_STOCK": ""
+            },
+            "RUNTEST": "false"
+        }
+    ]
+}

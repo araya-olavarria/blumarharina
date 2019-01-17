@@ -1,0 +1,150 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="mpPropia">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">{{titutoRecepcion}}</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6" ng-if="item.cabecera" ng-repeat="item in formulario track by $index">
+            <center>
+                <span class="lbl-campos">{{item.label || item.key}}<br/></span>
+                <input ng-model="item.ngModel" type="{{item.type}}" class="{{item.class}}" id="{{item.id}}" ng-disabled="item.disabled">
+            </center>
+        </div>
+    </div>
+    <hr>
+    <form id='recep-oc'>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;" ng-if="!item.cabecera" ng-repeat="item in formulario track by $index">
+                <span class="lbl-campos">{{item.label || item.key}}<br/></span></br>
+                <input type="{{item.type}}" class="input_medium" id="{{item.id}}" ng-model="item.ngModel" ng-disabled="item.disabled">
+                </br>
+                </br>
+            </div>
+        </div>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>POZO</th>
+                            <th>KILOS</th>
+                            <th>FECHA</th>
+                            <th>HORA</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="recep in recepciones track by $index">
+                            <td>
+                                <input id="pozo{{$index}}" type="text" class="input_small-stretch pozos" ng-model="recep.pozo" ng-disabled="recep.disabled">
+                            </td>
+                            <td>
+                                <input ng-model="recep.kilos" type="number" id="kilos" name="kilos" class="input_small-stretch" ng-disabled="recep.disabled">
+                            </td>
+                            <td>
+                                <input ng-model="recep.fecha" value="{{recep.fecha}}" type="date" id="fechaRecep" name="fechaRecep" class="input_small-stretch" ng-disabled="recep.disabled">
+                            </td>
+                            <td>
+                                <input ng-model="recep.hora" value="{{recep.hora}}" type="time" id="horaRecep" name="horaRecep" class="input_small-stretch" ng-disabled="recep.disabled">
+                            </td>
+                            <td>
+                                <a href="#" ng-click="addRecepcion()">
+                                    <img src="img/btn-mas.png">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="removeRecepcion($index)">
+                                    <img src="img/btn-borrar.png">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <center>
+                    <button type="button" ng-click="guardar()" id="enviaoc" name="btnenviaoc" class="btn-medium hvr-shrink">
+                        <img src="img/icon-save.png" class="icon-btn">
+                        <span class="lbl-btn-stretch" style="margin-top:7px;">Guardar</span>
+                    </button>
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <center>
+                    <button type="button" ng-click="recepcionar()" id="enviaoc" name="btnenviaoc" class="btn-medium hvr-shrink">
+                        <img src="img/icon-next.png" class="icon-btn">
+                        <span class="lbl-btn-stretch" style="margin-top:7px;">Recepcionar</span>
+                    </button>
+                </center>
+            </div>
+        </div>
+
+    </form>
+    </br>
+    </br>
+    <!--Modal-->
+    <div id="myModal" role="dialog" class="modal show" ng-show="showModal">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">SAP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <span class="txt-cabecera">Recepción Exitosa</span>
+                    </center>
+                    <div class="modal-datagrid center-block">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>N° DOCUMENTO</td>
+                                    <td>{{respCP}}</td>
+                                </tr>
+                                <tr>
+                                    <td>N° Guía</td>
+                                    <td>{{ recepcionSeleccionada.nGuia }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </br>
+                    </br>
+                    <button ng-click="cerrarModal()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-medium center-block">
+                        <img src="img/icon-enviar.png" class="icon-btn">
+                        <span class="lbl-btn-stretch" style="margin-top: 7px;">Cerrar</span>
+                    </button>
+                    </br>
+                    </br>
+                    </br>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

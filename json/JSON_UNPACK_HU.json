@@ -1,0 +1,37 @@
+{
+    "OBJETOENTRADA": [{
+            "BAPI": "BAPI_HU_UNPACK",
+            "PARAMETROS": {
+                "HUKEY": "",
+                "MATERIAL": "",
+                "LOTE": "",
+                "CANTIDAD": 0,
+                "MEDIDA": "KG",
+                "PLANT": "",
+                "STGE_LOC": "",
+                "PORCION": "",
+                "HU_ITEM": "000001"
+            }
+        },
+        {
+            "BAPI": "BAPI_GOODSMVT_CREATE",
+            "PARAMETROS": {
+                "ALMACEN": "104 ",
+                "ALMACENDESTINO": "P01 ",
+                "CENTRO": "1500",
+                "CENTRO_DESTINO": "1050",
+                "CODE": "04",
+                "CONTRAORDEN": "false",
+                "CONTRAPEDIDO": "false",
+                "FECHA": "20181220",
+                "GUIA": "312312",
+                "MATERIALES": [],
+                "MOVIMIENTO": 309,
+                "PEDIDO": "",
+                "RESULTADO_BAPI": true,
+                "TIPO_STOCK": ""
+            },
+            "RUNTEST": "false"
+        }
+    ]
+}

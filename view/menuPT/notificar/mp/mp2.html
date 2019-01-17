@@ -1,0 +1,147 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">MATERIA PRIMA</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='notifmp'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo" ng-if="!item.search" ng-repeat="item in formulario track by $index">
+                <span class="lbl-campos">{{item.label}}</span><br>
+                <input type="{{item.type}}" class="input_medium" ng-change="{{item.onChange}}" ng-blur="fn(((item.fn)?item.fn:''),$index)" ng-disabled="item.disabled" ng-model="item.ngModel" id="{{item.id}}" style="margin: 0 10px !important;">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 migo">
+                <span class="lbl-campos">Σ KG</span><br>
+                <input type="number" ng-model="sumaKG" class="input_small" disabled>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4 migo" ng-if="item.search" ng-repeat="item in formulario track by $index">
+                <span class="lbl-campos ">{{item.label}}</span><br>
+                <input id="{{item.id}}" type="{{item.type}}" class="input_small " placeholder="{{item.placeolder}}">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <button type="button" class="btn-medium hvr-shrink" style="height: 42px;margin-top: 18px;width: 134px;" ng-click="addLine()">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">BUSCAR</span>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div ng-repeat="item in detalle track by $index">
+                <div class="row" style="border: 1px solid #0000008c;">
+                    <div class="col-xs-12 col-md-6 col-sm-6" style="background-color: #023169;color: #FFFFFF;height: 27px;">
+                        <a ng-click="SHOW_DET(item)" href=""><span class="lbl-btn-stretch" style="margin-top: 7px;">{{item.lotePadre}}</span></a>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6" style="background-color: #023169;color: #FFFFFF;height: 27px;">
+                        <input class="checkmark" type="checkbox" style="width:14px;" ng-click="MARCAR_TODO(item)" ng-model="item.totalLote"><label class="lbl-btn-stretch" style="margin-top: 7px;">Utilizaro todo</label>
+                    </div>
+                </div>
+                <div ng-show="item.show">
+                    <div class="row" ng-repeat="hijo in item.lotesHijos track by $index" style="background: white;">
+                        <div class="col-xs-12 col-md-2 col-sm-2">
+                            <span class="lbl-campos">MATERIAL</span>
+                            <input type="text" class="input_small-stretch" ng-model="hijo.material">
+                        </div>
+                        <div class="col-xs-12 col-md-2 col-sm-2">
+                            <span class="lbl-campos">LOTE</span>
+                            <input type="text" class="input_small-stretch" ng-model="hijo.lote">
+                        </div>
+                        <div class="col-xs-12 col-md-2 col-sm-2">
+                            <span class="lbl-campos">STOCK</span>
+                            <input type="text" class="input_small-stretch" disabled ng-model="hijo.stock">
+                        </div>
+                        <div class="col-xs-12 col-md-2 col-sm-2">
+                            <span class="lbl-campos">KILOS</span>
+                            <input type="text" class="input_small-stretch" ng-change="CALC_DIF(hijo)" ng-model="hijo.cantidad">
+                        </div>
+                        <div class="col-xs-12 col-md-2 col-sm-2">
+                            <span class="lbl-campos">DIF</span>
+                            <input type="text" class="input_small-stretch" disabled ng-model="hijo.diferencia">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--<div class="container-tabla center-block table-responsive" style="width: 754px;">
+            <div class="datagrid " style="width: 738px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>MP</th>
+                            <th>LOTE MP</th>
+                            <th>ALMACÉN</th>
+                            <th>STOCK</th>
+                            <th>KILOS</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in detalle track by $index">
+                            <td>
+                                <input ng-model="item.material" type="text" id="material{{$index}}" ng-blur="Jquery_Solution($index,'material')"
+                                    name="material" class="input_small-stretch materialesMP">
+                            </td>
+
+                            <td>
+                                <input ng-model="item.lote" type="text" id="lote" name="lote" class="input_small-stretch">
+                                <a href="" ng-click="getInfoMP(item,$index)" style="background-color:orange;"><img src="img/icon-search.png"
+                                        class=""></a>
+                            </td>
+                            <td>
+                                <input ng-model="item.almacen" type="text" id="almacen{{$index}}" ng-disabled="item.almacen_disabled" ng-blur="Jquery_Solution($index,'almacen')"
+                                    name="almacen" class="input_small-stretch almacenes">
+                            </td>
+                            <td>
+                                <input ng-model="item.stock" type="number" id="stock" name="stock" class="input_small-stretch"
+                                    disabled>
+                            </td>
+                            <td>
+                                <input ng-model="item.kilos" type="number" id="kilos" name="kilos" ng-change="totalConsumo(item.kilos,$index)"
+                                    class="input_small-stretch">
+                            </td>
+                            <td>
+                                <a href="" ng-click="addLine()">
+                                    <img src="img/btn-mas.png">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="" ng-click="removeLine($index)">
+                                    <img src="img/btn-borrar.png">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>-->
+        <hr>
+        </br>
+        <center>
+            <button type="button" id="nextmp" name="nextpt" class="btn-medium hvr-shrink" ng-click="ConsumirMP()">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">CONSUMIR</span>
+            </button>
+        </center>
+    </form>
+    <br><br>
+</div>

@@ -1,0 +1,90 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="mezclaProcesoHUCTR">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="#" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">PROCESO MEZCLADO</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br></br>
+    <form id='scanmezcla'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 migo" style="text-align:center;">
+                <button type="button" id="btnscan" ng-click="scan()" name="btnscan" class="btn-medium-stretch hvr-shrink" style="margin-top:0px !important;">
+                    <img src="img/icon-barcode.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin:7px 10px 0 0;">ESCANEAR</span>
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 migo">
+                <center>
+                    <span class="lbl-campos">HU</span><br>
+                    <input type="text" class="input_large" ng-model='json_hu' id="numoc" ng-blur="ADD_HU(json_hu)" style="margin: 0 10px !important;" >
+                </center>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>HU</th>
+                            <th>LOTE</th>
+                            <th>PORCIÓN</th>
+                            <th>EMPAQUE</th>
+                            <th>MATERIAL</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='item in HU_GET track by $index'>
+                            <td>{{item.hu}}</td>
+                            <td>{{item.lote}}</td>
+                            <td>{{item.porcion}}</td>
+                            <td>{{item.envase}}</td>
+                            <td>{{item.material}}</td>
+                            <td>
+                                <a>
+                                    <img src="img/btn-borrar.png" ng-click="DELETE_HU($index)" class="hvr-shrink">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br><br>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <button type="button" id="grabatodo" ng-click="SAVE_HU()" name="grabatodo" class="btn-medium center-block" style="margin-bottom:10px;">
+                    <img src="img/icon-save.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">GRABAR</span>
+                </button>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <button type="button" id="btnok" name="btnok" ng-click="MEZCLA_HU()" class="btn-medium center-block" style="margin-bottom:10px;">
+                    <img src="img/icon-ok.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">ACEPTAR</span>
+                </button>
+            </div>
+        </div>
+        </br></br></br>
+    </form>
+</div>

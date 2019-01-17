@@ -1,0 +1,957 @@
+/*
+==================================================
+           ESTILOS GLOBALES APP BLUMAR
+==================================================
+1- Globales
+2- Tipografia
+3- Layout
+4- Clases de Componentes
+5- Botones
+6- Tablas
+7- Modal
+8- Media
+
+*/
+
+
+/*
+----------------------------------
+          1- Globales
+----------------------------------
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+body {
+    background: url(../img/pattern.png);
+    background-attachment: fixed;
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+    color: #ffffff !important;
+}
+
+.atabla {
+    text-decoration: none !important;
+    color: #0D478C !important;
+}
+
+
+/*
+----------------------------------
+          2- Tipografia
+----------------------------------
+*/
+
+h1 {
+    /* Usado en titulos del resumen */
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 26px;
+    color: #4A4A4A;
+    letter-spacing: 0;
+    padding: 0 6%;
+}
+
+h2 {
+    /* Usado en titulo del modal */
+    font-family: 'Open Sans';
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+p {
+    /* Mensajes y contenido de tablas estaticas */
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-weight: 400;
+    color: #4A4A4A;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 14px;
+}
+
+.txt-login {
+    /* Contenido del titulo del login */
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 24px;
+    color: #0D478C;
+    letter-spacing: 0;
+    margin: 70px 45px;
+}
+
+.txt-field {
+    /* Contenido del input */
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+}
+
+.txt-cabecera {
+    /* Titulo de las ventanas */
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.lbl-campos {
+    /* Etiqueta de los campos de los formularios */
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+}
+
+.lbl-btn {
+    /* Etiqueta de los botones */
+    font-family: 'Open Sans';
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.lbl-btn-stretch {
+    /* Etiqueta de los botones */
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.lbl-headertabla {
+    /* Etiqueta de las cabeceras de las tablas estaticas */
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 15px;
+}
+
+.lbl-chek {
+    font-family: 'Open Sans' !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #555555 !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+    margin: 0 0 15px 10px !important;
+}
+
+
+/*
+----------------------------------
+          3- Layout
+----------------------------------
+*/
+
+.login-window {
+    /* Container de la ventana de login */
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.50);
+    border-radius: 8px;
+    width: 670px;
+    height: 410px;
+    margin-top: 190px;
+}
+
+.contenedor {
+    /* Container de la aplicacion */
+    background-color: #FFFFFF;
+    width: 768px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cabecera {
+    /* Cabecera de las ventanas de la aplicacion */
+    background: #0D478C;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
+    width: 768px;
+    height: 70px;
+    padding: 20px 30px;
+}
+
+.container-tabla {
+    /* Container de la tabla cuando va dentro de una subseccion */
+    background: #EEEEEE;
+    border: 1px solid #979797;
+    border-radius: 8px;
+    padding: 8px;
+    width: 700px;
+}
+
+.logo-login {
+    /* Clase para el logo del login */
+    width: 169px;
+    height: 90px;
+    object-fit: contain;
+    margin: 30px 45px;
+}
+
+hr {
+    width: 100% !important;
+    height: 1px !important;
+    border-top: 2px solid #979797 !important;
+}
+
+.fecha-blocked {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.migo {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.cajacheck {
+    background: #EEEEEE;
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.50);
+    width: 350px;
+    height: 250px;
+    padding: 25px 0;
+}
+
+
+/*
+----------------------------------
+     4- Clases de Componentes
+----------------------------------
+*/
+
+.input_small {
+    /* Input chico */
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    width: 146px;
+    height: 42px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 0 30px;
+}
+
+.input_small:disabled {
+    /* input chico deshabilitado */
+    background: #D6D6D6;
+}
+
+.input_medium {
+    /* Input mediano */
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    width: 274px;
+    height: 42px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.input_medium:disabled {
+    /* Input mediano deshabilitado */
+    background: #D6D6D6;
+}
+
+.input_large {
+    /* Input grande */
+    background: #EEEEEE !important;
+    border: 1px solid #979797 !important;
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.50) !important;
+    border-radius: 8px !important;
+    width: 380px !important;
+    height: 43px !important;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 14px;
+    color: #555555;
+    letter-spacing: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.input_large:disabled {
+    /* Input grande deshabilitado */
+    background: #D6D6D6;
+}
+
+.input_calendar {
+    /* Input del calendario */
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    width: 274px;
+    height: 42px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.input-sm {
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    width: 225px;
+    height: 42px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+
+/* Este es el estilo del calendario */
+
+[type="date"] {
+    background: #EEEEEE url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+
+/* Este es el estilo del calendario con hora*/
+
+[type="datetime"] {
+    background: #EEEEEE url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+}
+
+[type="datetime"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+[type="datetime"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.combo-medium {
+    /* Combo mediano */
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    width: 274px;
+    height: 42px;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.combo-medium-stretch {
+    /* Combo mediano ajustado*/
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    width: 180px;
+    height: 30px;
+    margin: 2px 0;
+    padding: 5px 0;
+}
+
+.input_small-stretch {
+    /* Input chico ajustado*/
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    width: 100px;
+    height: 30px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 2px 0;
+    padding: 5px 0;
+}
+
+.input_small-stretch:disabled {
+    /* Input chico ajustado deshabilitado*/
+    background: #D6D6D6;
+}
+
+.input_medium-stretch {
+    /* Input chico ajustado*/
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    width: 274px;
+    height: 30px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 2px 0;
+    padding: 5px 0;
+}
+
+.input_medium-stretch:disabled {
+    /* Input chico ajustado deshabilitado*/
+    background: #D6D6D6;
+}
+
+
+/* Este es el estilo de los check */
+
+
+/* el label */
+
+.lbl-check {
+    display: block;
+    position: relative;
+    margin-bottom: 12px;
+    margin-left: 80px;
+    margin-top: 30px;
+    cursor: pointer;
+    padding-left: 35px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'Open Sans' !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: #555555 !important;
+    letter-spacing: 0 !important;
+    text-transform: uppercase !important;
+}
+
+
+/* saco el default */
+
+.lbl-check input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* este es mi checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eeeeee;
+    border: #555555 solid 3px;
+}
+
+
+/* el hover */
+
+.lbl-check:hover input~.checkmark {
+    background-color: #666666;
+}
+
+
+/* background cuando esta marcado */
+
+.lbl-check input:checked~.checkmark {
+    background-color: #eeeeee;
+}
+
+
+/* el indicador */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* muestro el checked */
+
+.lbl-check input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* estilo del indicador */
+
+.lbl-check .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #555555;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.combo-small-stretch {
+    /* Combo mediano ajustado*/
+    background: #EEEEEE;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    color: #555555;
+    letter-spacing: 0;
+    width: 125px;
+    height: 30px;
+    margin: 2px 0;
+    padding: 5px 0;
+}
+
+.reidio {
+    margin-right: 8px !important;
+    background: #EEEEEE;
+    border: 3px solid #4d4d4d;
+}
+
+
+/*
+----------------------------------
+           5- Botones
+----------------------------------
+*/
+
+.boton {
+    width: 500px;
+    height: 74px;
+    background: #E97547;
+    -webkit-transform: skewX(-30deg);
+    -moz-transform: skewX(-30deg);
+    -ms-transform: skewX(-30deg);
+    -o-transform: skewX(-30deg);
+    transform: skewX(-30deg);
+    padding: 22px 0;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.lbl-boton {
+    font-family: 'Open Sans' !important;
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    -webkit-transform: skewX(30deg);
+    -moz-transform: skewX(30deg);
+    -ms-transform: skewX(30deg);
+    -o-transform: skewX(30deg);
+    transform: skewX(30deg);
+    margin-bottom: 24px;
+}
+
+.icon-btn {
+    /* Padding de los iconos que van en los botones */
+    padding: 0 30px 0 5px !important;
+    margin-top: -10px;
+}
+
+.btn-menu {
+    /* Padding de los botones de los menus */
+    padding: 24px 0;
+    align-items: center;
+}
+
+.btn_ingreso {
+    /* Boton del login */
+    background: #EB5C24;
+    border-radius: 8px;
+    width: 180px;
+    height: 55px;
+    font-family: 'Open Sans';
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.btn-small {
+    /* Boton chico */
+    background: #EB5C24;
+    border-radius: 8px;
+    width: 180px;
+    height: 52px;
+}
+
+.btn-medium {
+    /* Boton mediano */
+    background: #EB5C24;
+    border-radius: 8px;
+    width: 280px;
+    height: 52px;
+}
+
+.btn-medium-stretch {
+    /* boton ajustado para que se vea visualmente igual a un input-medium */
+    background: #EB5C24;
+    border-radius: 8px;
+    width: 280px;
+    height: 43px;
+    margin-top: 20px;
+}
+
+.btn-chico {
+    background: #EB5C24;
+    border-radius: 8px;
+    width: 50px;
+    height: 42px;
+    margin-bottom: 4px !important;
+}
+
+
+/*
+----------------------------------
+           6- Tablas
+----------------------------------
+*/
+
+
+/* tabla pensada para campos dinamicos */
+
+.datagrid table {
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+}
+
+.datagrid {
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
+    background: #fff;
+    overflow: hidden;
+    border: 1px solid #979797;
+    width: 680px;
+}
+
+.datagrid table td,
+.datagrid table th {
+    padding: 5px 10px;
+}
+
+.datagrid table thead th {
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #023169), color-stop(1, #023169));
+    background: -moz-linear-gradient( center top, #023169 5%, #023169 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#023169', endColorstr='#023169');
+    background-color: #023169;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    border-left: 1px solid #979797;
+    text-align: center;
+}
+
+.datagrid table thead th:first-child {
+    border: none;
+}
+
+.datagrid table tbody td {
+    color: #555555;
+    border-left: 1px solid #979797;
+    font-size: 14px;
+    border-bottom: 1px solid #979797;
+    font-weight: 400;
+    text-align: center;
+}
+
+.datagrid table tbody td:first-child {
+    border-left: none;
+}
+
+.datagrid table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+table tr:hover {
+    background-color: #dddddd;
+}
+
+
+/*
+----------------------------------
+           7- Modal
+----------------------------------
+*/
+
+.modal-container {
+    /* container del modal */
+    background-color: #FFFFFF;
+    width: 680px;
+    height: 320px;
+    overflow: hidden;
+}
+
+.modal-header {
+    /* cabecera del modal */
+    background-color: #0D478C;
+    width: 100%;
+    height: 70px;
+}
+
+.modal-guia-container {
+    /* container del modal de la guía*/
+    background-color: #FFFFFF;
+    width: 680px;
+    height: 370px;
+    overflow: hidden;
+}
+
+
+/* tabla para el modal */
+
+.modal-datagrid table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.modal-datagrid {
+    font-family: 'Open Sans';
+    font-size: 13px;
+    font-weight: 400;
+    background: #fff;
+    overflow: hidden;
+    border: 1px solid #979797;
+    width: 360px;
+}
+
+.modal-datagrid table td,
+.modal-datagrid table th {
+    padding: 3px 10px;
+}
+
+.modal-datagrid table tbody td {
+    color: #4A4A4A;
+    border-left: 1px solid #979797;
+    font-size: 13px;
+    border-bottom: 1px solid #979797;
+    font-weight: normal;
+    width: 50%;
+}
+
+.modal-datagrid table tbody .alt td {
+    background: #D8D8D8;
+    color: #4A4A4A;
+}
+
+.modal-datagrid table tbody td:first-child {
+    border-left: none;
+}
+
+.modal-datagrid table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/*
+----------------------------------
+           8- Media
+----------------------------------
+*/
+
+@media (max-width: 375px) {
+    .login-window {
+        width: 310px;
+        height: 380px;
+        margin-top: 15%;
+    }
+    .txt-login {
+        font-size: 18px;
+        margin: 30px 25px;
+    }
+    .input_large {
+        width: 280px !important;
+        height: 43px !important;
+        font-size: 12px;
+        padding-left: 20px;
+    }
+    .logo-login {
+        height: 60px;
+        margin: 10px 0;
+        width: 100%;
+    }
+    .contenedor {
+        width: 300px;
+        height: 100%;
+    }
+    .cabecera {
+        background: #0D478C;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.50);
+        width: 300px;
+        height: 60px;
+        padding: 20px 30px;
+    }
+    .txt-cabecera {
+        font-weight: 600;
+        font-size: 16px;
+        color: #FFFFFF;
+    }
+    .icon-cabecera {
+        width: 20px;
+        height: 20px;
+    }
+    .fecha-blocked {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .lbl-campos {
+        margin: 25px 0 10px 0 !important;
+    }
+    .migo {
+        text-align: right;
+        margin-bottom: 10px;
+    }
+    .container-tabla {
+        background: #EEEEEE;
+        border: 1px solid #979797;
+        border-radius: 8px;
+        padding: 8px;
+        width: 290px;
+    }
+    .datagrid {
+        font-size: 13px;
+        width: 280px;
+    }
+    .modal-container {
+        height: 400px;
+        width: 300px;
+    }
+    .modal-guia-container {
+        height: 500px;
+        width: 300px;
+    }
+    .modal-datagrid {
+        font-size: 11px !important;
+        width: 270px;
+    }
+    .modal-header {
+        width: 300px;
+        height: 50px;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    .datagrid table thead th {
+        width: 50%;
+    }
+    .datagrid table tbody td {
+        width: 50%;
+    }
+    .lbl-check {
+        margin-left: 55px;
+    }
+    .boton {
+        width: 240px;
+        height: 45px;
+        background: #E97547;
+        -webkit-transform: skewX(-30deg);
+        -moz-transform: skewX(-30deg);
+        -ms-transform: skewX(-30deg);
+        -o-transform: skewX(-30deg);
+        transform: skewX(-30deg);
+        padding: 22px 0;
+        align-items: center;
+        margin: 25px 0;
+    }
+    .lbl-boton {
+        font-family: 'Open Sans' !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: center;
+        -webkit-transform: skewX(30deg);
+        -moz-transform: skewX(30deg);
+        -ms-transform: skewX(30deg);
+        -o-transform: skewX(30deg);
+        transform: skewX(30deg);
+        margin: -8px 0 0px 0;
+    }
+    .icon-btn {
+        /* Padding de los iconos que van en los botones */
+        padding: 0 3px 0 5px !important;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 767px) {
+    .login-window {
+        width: 400px;
+        height: 680px;
+        margin-top: 15%;
+    }
+}
+
+
+/*
+----------------------------------
+           9- Ajustes
+----------------------------------
+*/
+
+.ajuste1 {
+    padding: 0 15px 0 5px !important;
+    margin-top: -10px;
+}
+
+.ajuste2 {
+    padding: 0 40px 0 0 !important;
+    margin-top: -10px;
+    margin-left: -100px;
+}
+
+.ajuste3 {
+    padding: 0 40px 0 0 !important;
+    margin-top: -10px;
+    margin-left: -180px;
+}

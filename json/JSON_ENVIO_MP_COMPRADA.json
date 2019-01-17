@@ -1,0 +1,28 @@
+{
+    "OBJETOENTRADA": [{
+            "BAPI": "BAPI_GOODSMVT_CREATE",
+            "RUNTEST": "false",
+            "PARAMETROS": {
+                "FECHA": "20181015",
+                "MATERIALES": [],
+                "TIPO_STOCK": "",
+                "PEDIDO": "",
+                "RESULTADO_BAPI": true,
+                "CONTRAPEDIDO": "true",
+                "CONTRAORDEN": "false",
+                "CENTRO": "1020",
+                "ALMACEN": "",
+                "GUIA": "",
+                "MOVIMIENTO": 101
+            }
+        },
+        {
+            "BAPI": "BAPI_ACTUALIZA_LOTE",
+            "RUNTEST": "false",
+            "PARAMETROS": {
+                "LOTES": [],
+                "CARACTERISTICAS": []
+            }
+        }
+    ]
+}

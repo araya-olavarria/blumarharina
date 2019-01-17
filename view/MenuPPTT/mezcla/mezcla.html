@@ -1,0 +1,144 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="#" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">INGRESO DE MEZCLA</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br></br>
+    <form id='autorizar' method="" action="">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 migo">
+                <div>
+                    <!-- =========================================================================================== -->
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-2 col-md-2" ng-if="item.cabecera" ng-repeat="item in formulario track by $index">
+                            <center ng-if="item.show">
+                                <span class="lbl-campos">{{item.label || item.key}}<br /></span>
+                                <input ng-model="item.ngModel" type="{{item.type}}" ng-change="{{item.ngChange}}" class="input_small-stretch"
+                                    id="{{item.id}}" ng-disabled="item.disabled">
+                            </center>
+                        </div>
+                    </div>
+                    <!-- =====================================  AQUI AGREGA SUB LOTES DENTRO DEL LOTE PRINCIPAL  ======================================================= -->
+                    <br>
+                    <div class="container-tabla center-block table-responsive">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                            <!-- <center> -->
+                            <div class="row">
+                                <center>
+                                    <div class="col-xs-2 col-sm-2 col-md-2"></div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4" ng-if="item.otroLote" ng-repeat="item in formulario track by $index">
+                                        <center>
+                                            <span class="lbl-campos" style="text-align:center;">{{item.label ||
+                                                item.key}}</span>
+                                        </center>
+                                        <input ng-model="item.ngModel" type="{{item.type}}" ng-change="{{item.ngChange}}"
+                                            class="input_small" id="{{item.id}}" ng-disabled="item.disabled">
+                                    </div>
+                                    <button ng-click="clickCargarLote()" type="submit" id="btnbuscar" name="btnbuscar"
+                                        class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                        <img src="img/icon-ok.png" class="icon-btn">
+                                        <span class="lbl-btn-stretch" style="margin-top: 8px;">ok</span>
+                                    </button>
+                                </center>
+                            </div>
+                        </div>
+                        <!-- =====================================  AQUI LISTA LOS SUB LOTES   ======================================================= -->
+                        <div class="datagrid ">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>LOTE</th>
+                                        <th>KG</th>
+                                        <th>BORRAR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in listaLote track by $index">
+                                        <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                                            <td class="col-xs-2 col-sm-2 col-md-2" style="text-align:center;">{{item.loteS||item.valorS}}</td>
+                                            <td class="col-xs-2 col-sm-2 col-md-2" style="text-align:center;">{{item.valorS||item.valorS}}</td>
+                                            <td class="col-xs-2 col-sm-2 col-md-2">
+                                                <a href="#"><img src="img/btn-borrar.png"></a>
+                                            </td>
+                                        </div>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- ======================================= SUMATORIA =================================== -->
+                        <form id='ingresamezcla' method="" action="">
+                            <div class="row">
+                                <div class="col-xs-4 col-sm-4 col-md-4"></div>
+                                <div class="col-xs-4 col-sm-4 col-md-4" ng-if="item.sumatoria" ng-repeat="item in formulario track by $index">
+                                    <center ng-if="item.show">
+                                        <span class="lbl-campos">Σ KG</span><br>
+                                        <span class="col-xs-4 col-sm-4 col-md-4"><br /></span>
+                                        <input ng-model="sumatodo" class="input_small" disabled>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- ======================================  BOTONES DE SALIDA ============================ -->
+                        <form id='ingresamezcla' method="" action="">
+                            <hr>
+                            <!-- <div class="container-tabla center-block table-responsive"> -->
+                            <div class="datagrid ">
+                                <table>
+                                    <thead>
+                                        <center>
+                                            <tr>
+                                                <button ng-click="btnEliminarPag1()" type="submit" id="btnEliminarPag1"
+                                                    name="btnEliminarPag1" class="btn-small center-block hvr-shrink"
+                                                    style="margin: 0 10px 10px 10px;">
+                                                    <img src="img/icon-ok.png" class="icon-btn">
+                                                    <span class="lbl-btn-stretch" style="margin-top: 8px;">ELIMINAR</span>
+                                                </button>
+
+                                                <button ng-click="btnImprimirPag1()" type="submit" id="btnImprimirPag1"
+                                                    name="btnImprimirPag1" class="btn-small center-block hvr-shrink"
+                                                    style="margin: 0 10px 10px 10px;">
+                                                    <img src="img/icon-ok.png" class="icon-btn">
+                                                    <span class="lbl-btn-stretch" style="margin-top: 8px;">IMPRIMIR</span>
+                                                </button>
+
+                                                <button ng-click="btnAceptarPag1()" type="submit" id="btnAceptarPag1"
+                                                    name="btnAceptarPag1" class="btn-small center-block hvr-shrink"
+                                                    style="margin: 0 10px 10px 10px;">
+                                                    <img src="img/icon-ok.png" class="icon-btn">
+                                                    <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                                                </button>
+                                            </tr>
+                                        </center>
+                                    </thead>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<br>
+</form>
+</br>
+</br>
+</br>
+<!--Modal-->
+
+</div>

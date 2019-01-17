@@ -1,0 +1,150 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="mezclaCTR">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="#" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">INGRESO MEZCLAS</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='ingresamezcla'>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 migo" ng-show="{{!item.hide}}" ng-repeat="item in Mezcla.cabecera track by $index">
+                <div ng-show="((['text', 'number'].indexOf(item.type) > -1) ? true : false)">
+                    <!--<h3 style="font-size: 12px;">{{item.label||item.key}}</h3>-->
+                    <span class="lbl-campos">{{item.label||item.key}}</span><br>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                    <input type="{{item.type}}" id="{{item.id}}" ng-model="item.ngModel" max="{{item.max}}" placeholder="{{item.placeholder}}" maxlength="{{item.max}}" class="input_small" ng-blur="fn(((item.fn)?item.fn:''),item.ngModel)" ng-disabled="item.disabled">
+                    <!--</div>-->
+                </div>
+                <div ng-show="((item.type === 'select') ? true : false)">
+                    <span class="lbl-campos">{{item.label||item.key}}</span><br>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                    <select class="combo-medium" ng-model="item.ngModel" ng-options="option as option.text || option.value for option in item.options track by option.key" ng-change="fn(item.fn,item.ngModel)">
+                        <option value=''>Seleccionar</option>
+                    </select>
+                    <!--</div>-->
+                </div>
+                <div ng-show="((['time', 'date'].indexOf(item.type) > -1) ? true : false)">
+                    <span class="lbl-campos">{{item.label||item.key}}</span><br>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                    <input type="{{item.type}}" id="{{item.id}}" ng-model="item.ngModel" placeholder="{{item.placeholder}}" class="input_medium">
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid">
+                <table>
+                    <thead>
+                        <tr>
+                            <!--<th></th>-->
+                            <th>LOTE A CONSUMIR</th>
+                            <th>PORCION</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- <td>
+                                <input type="checkbox">
+                            </td>-->
+                            <td>
+                                <input type="text" ng-model="loteconsumir" class="input_medium-stretch">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="porcion" class="input_medium-stretch">
+                            </td>
+                            <!--<td>
+                                <a href="#">
+                                   <img src="img/btn-borrar.png">
+                                </a>
+                            </td>-->
+                            <td>
+                                <a href="#">
+                                    <img src="img/btn-mas.png" ng-click="AddLote(loteconsumir,porcion)">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="container-tabla center-block table-responsive" ng-hide="lotesTabla">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>LOTE</th>
+                            <th>PORCION</th>
+                            <th>KG</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='item in Mezcla.item track by $index'>
+                            <td>
+                                {{$index+1}}
+                            </td>
+                            <td>{{item.lote}}</td>
+                            <td>{{item.porcion}}</td>
+                            <td><input type="number" ng-model="item.kg" max="{{item.kg2}}" ng-change="ActualizaKilos()" class="input_small"></td>
+                            <td>
+                                <a>
+                                    <img src="img/btn-borrar.png" class="" ng-click="deleteLotes(item.idx)">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 migo">
+                    <span class="lbl-campos">Σ KG</span><br>
+                    <input type="number" ng-model="sumaKG" class="input_small" disabled>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <br><br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <button ng-click="SEND()" type="button" class="btn-medium center-block" style="margin-bottom:10px;">
+                    <img src="img/icon-enviar.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">GUARDAR/ENVIAR</span>
+                </button>
+            </div>
+        </div>
+        <!--<div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <button ng-click="DeleteAll()" class="btn-medium center-block" style="margin-bottom:10px;">
+                    <img src="img/icon-ok.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">ELIMINAR</span>
+                </button>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                <button class="btn-medium center-block" style="margin-bottom:10px;" ng-click="Validate_Form()">
+                    <img src="img/icon-ok.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin-top: 7px;">ACEPTAR</span>
+                </button>
+            </div>
+        </div>-->
+        </br>
+        </br>
+        </br>
+    </form>
+</div>

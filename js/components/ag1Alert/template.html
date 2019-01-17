@@ -1,0 +1,25 @@
+<div ng-show="oalert.show">
+    <div class="modal fade in" id="basic" tabindex="-1" role="basic" aria-hidden="true" style="display: block;padding-right: 16px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="oalert.show=false"></button>
+                    <h4 class="modal-title">{{oalert.title||'Respuesta'}}</h4>
+                </div>
+                <div class="modal-body"> {{oalert.message||'Mensaje'}} </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn dark btn-outline" data-dismiss="modal" ng-hide="oalert.confirm" ng-click="oalert.show=false;oalert.cancel()">Cerrar</button>
+                    <button type="button" class="btn green" ng-click="oalert.show=false;oalert.continue()">{{oalert.acceptTextButton||'Aceptar'}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="    width: 100000px;
+        height: 100000px;
+        position: fixed;
+        opacity: 0.5;
+        background: darkslategrey;
+        top: -1000px;
+        left: -1000px;">
+    </div>
+</div>    

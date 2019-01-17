@@ -1,0 +1,134 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">AUTORIZAR</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='autorizar'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">Fecha</span><br>
+                    <input value="{{ fechaNow | date: 'dd-MM-yyyy' }}" ng-model="fecha" type="date" class="input_calendar" id="fecha" style="margin: 0 10px !important;">
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">Material</span><br>
+                    <select ng-model="material" name="material" class="combo-medium" ng-options="item as item.material for item in materialesJson track by item.id">
+                        <option value="" selected>Seleccione Material</option>
+                    </select>
+                </center>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12" style="text-align:center;">
+                <button type="button" id="btnbuscar" ng-click="getNotificaciones()" name="btnbuscar" class="btn-medium-stretch hvr-shrink" style="margin-top:0px !important;">
+                    <img src="img/icon-search.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin:7px 10px 0 0;">BUSCAR</span>
+                </button>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>LOTE</th>
+                            <th>PORCIÓN</th>
+                            <th>DETALLE</th>
+                            <th>APROBADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in lotes track by $index">
+                            <td>{{ item.lote }}</td>
+                            <td>{{ item.porcion }}</td>
+                            <td><a href="" ng-click="verDetalle(item)" class="atabla">Ver</a></td>
+                            <td><input type="checkbox" id="aprueba" ng-model="item.aprob"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <center>
+            <button ng-click="autorizar()" type="button" id="apruebatodo" name="btnaprueba" class="hvr-shrink btn-medium">
+                <img src="img/icon-ok.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top: 8px;">APROBAR</span>
+            </button>
+        </center>
+    </form>
+    </br>
+    </br>
+    </br>
+    <!--Modal-->
+    <div id="myModal" role="dialog" ng-class="showM">
+        <div class="modal-dialog" style="width: 750px;">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <center>
+                                <span class="txt-cabecera">LOTE {{loteSeleccionado.lote}}<span class="txt-cabecera">
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container-tabla center-block table-responsive">
+                        <div class="datagrid ">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>LOTE</th>
+                                        <th>PORCIÓN</th>
+                                        <th>ALMACÉN</th>
+                                        <th>ENVASE</th>
+                                        <th>HU</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in detalle track by $index">
+                                        <td>{{item.lote}}</td>
+                                        <td>{{item.porcion}}</td>
+                                        <td>{{item.almacen}}</td>
+                                        <td>{{item.envase}}</td>
+                                        <td>{{item.hu}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </br>
+                    <center>
+                        <button ng-click="closeModal()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                            <img src="img/icon-ok.png" class="icon-btn">
+                            <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                                </button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

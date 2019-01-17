@@ -1,0 +1,99 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="listarRecepciones">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">{{titutoRecepcion}}</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='buscaoc'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">N° Guía</span>
+                    <input ng-model="filterOb.nGuia" type="text" class="input_small" id="numoc" style="margin: 0 10px !important;">
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo" style="text-align:center;">
+                <button type="submit" id="btnbuscar" name="btnbuscar" class="btn-medium-stretch hvr-shrink" style="margin-top:0px !important;">
+                    <img src="img/icon-search.png" class="icon-btn">
+                    <span class="lbl-btn-stretch" style="margin:7px 10px 0 0;">BUSCAR</span>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+
+                            <th>N° GUÍA</th>
+                            <th>FECHA GUÍA</th>
+                            <th>EMBARCACIÓN</th>
+                            <th>FECHA RECALADA</th>
+                            <th>RECEPCIONAR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in descargas | filter:filterOb:strict:d  track by $index  ">
+                            <!-- | startFromGrid: currentPage[0] * pageSize[0] | limitTo: pageSize[0] -->
+                            <!-- | startFromGrid: currentPage * pageSize | limitTo: pageSize -->
+                            <td>{{ item.nGuia }}</td>
+                            <td>{{ item.fechaGuia | formatFecha }}</td>
+                            <td>{{ item.embarcacion }}</td>
+                            <td>{{ item.fechaRecalada | formatFecha}}</td>
+                            <td>
+                                <a href="" ng-click="selectDescarga(item)">
+                                    <img src="img/btn-mas.png" class="hvr-shrink">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class='btn-group'>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage[0] === 0' ng-click='setPage(1,0)'>&laquo;</button>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage[0] === page.no - 1 || page.tresPV' ng-click='setPage(page.no,0)' ng-repeat='page in pages[0]' ng-hide="page.vsbl">{{((page.tresPV)?page.tresP:page.no)}}</button>
+                <button type='button' class='btn btn-default' ng-disabled='currentPage[0] >= pendientes.length/pageSize[0] - 1' ng-click='setPage(FIN,0)'>&raquo;</button>
+            </div>
+        </div>
+        </br>
+        <hr>
+        <!-- <center>
+            <nav aria-label="paginador">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Atrás</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </center> -->
+    </form>
+    </br>
+</div>

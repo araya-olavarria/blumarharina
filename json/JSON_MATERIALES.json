@@ -1,0 +1,73 @@
+[{
+        "ITM_IDENT": "ZSARDINA",
+        "ITEM_TEXT1": "Sardina"
+    },
+    {
+        "ITM_IDENT": "ZANCHOVETA",
+        "ITEM_TEXT1": "Anchoveta"
+    },
+    {
+        "ITM_IDENT": "ZBACALADILLO",
+        "ITEM_TEXT1": "Bacaladillo(Mote)"
+    },
+    {
+        "ITM_IDENT": "ZBAGRE",
+        "ITEM_TEXT1": "Bagre"
+    },
+    {
+        "ITM_IDENT": "ZCALAMAR",
+        "ITEM_TEXT1": "Calamar"
+    },
+    {
+        "ITM_IDENT": "ZCABALLA",
+        "ITEM_TEXT1": "Caballa"
+    },
+    {
+        "ITM_IDENT": "ZCUBICEPS",
+        "ITEM_TEXT1": "Cubiceps"
+    },
+    {
+        "ITM_IDENT": "ZJIBIA",
+        "ITEM_TEXT1": "Jibia"
+    },
+    {
+        "ITM_IDENT": "ZJUREL",
+        "ITEM_TEXT1": "Jurel"
+    },
+    {
+        "ITM_IDENT": "ZMERLUZA",
+        "ITEM_TEXT1": "Merluza Común"
+    },
+    {
+        "ITM_IDENT": "ZMERLUZACOLA",
+        "ITEM_TEXT1": "Merluza de Cola"
+    },
+    {
+        "ITM_IDENT": "ZOTRAS",
+        "ITEM_TEXT1": "Otras"
+    },
+    {
+        "ITM_IDENT": "ZPAMPANO",
+        "ITEM_TEXT1": "Pampano"
+    },
+    {
+        "ITM_IDENT": "ZPEJERREY",
+        "ITEM_TEXT1": "Pejerrey"
+    },
+    {
+        "ITM_IDENT": "ZSIERRA",
+        "ITEM_TEXT1": "Sierra"
+    },
+    {
+        "ITM_IDENT": "ZTITRE",
+        "ITEM_TEXT1": "Tritre"
+    },
+    {
+        "ITM_IDENT": "ZVINCIGUERRIA",
+        "ITEM_TEXT1": "Vinciguerria"
+    },
+    {
+        "ITM_IDENT": "ZDESPUNTECON",
+        "ITEM_TEXT1": "Despunte de conservas"
+    }
+]

@@ -1,0 +1,205 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="mpComprada">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">{{titutoRecepcion}}</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <center>
+                <span class="lbl-campos">N° Guía<br/></span>
+                <input value="{{ recepcionSeleccionada.nGuia }}" type="text" class="input_small" id="nguia" readonly>
+            </center>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <center>
+                <span class="lbl-campos">Fecha Recepción</span>
+                <input value="{{fecha | date:'dd-MM-yyyy'}}" ng-model="fechaRecep" type="date" class="input_small" id="fecha-recepcion">
+            </center>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+            <center>
+                <span class="lbl-campos">Hora Recepción</span>
+                <input value="{{horaRecep | date:'H:m'}}" ng-model="horaRecep" type="time" class="input_small" id="fecha-recepcion">
+            </center>
+        </div>
+    </div>
+    <hr>
+    <form id='recep-oc'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Proveedor</span></br>
+                <input type="text" class="input_medium" id="proveedores" ng-model="proveedor" disabled>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Material</span></br>
+                <select ng-model="material" class="combo-medium" id="materiales" disabled>
+                </select>
+            </div>
+        </div>
+        </br>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Cantidad de Kilos</span></br>
+                <input ng-model="kilos" type="number" id="kilos" name="kilos" class="input_medium" disabled>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Pozo</span></br>
+                <select ng-model="pozo" class="combo-medium">
+                    <option value="">Seleccione Pozo</option>
+                    <option value="Pozo 1">Pozo 2</option>
+                    <option value="Pozo 2">Pozo 1</option>
+                    <option value="Pozo 3">Pozo 3</option>
+                    <option value="Pozo 4">Pozo 4</option>
+                </select>
+            </div>
+            <!--<div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Fecha de Entrega</span></br>
+                <input ng-model="fechaEntregas" type="date" class="input_calendar" id="fechaentrega">
+            </div>-->
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">N° Ticket</span></br>
+                <input ng-model="nDA" type="text" id="nda" name="nda" class="input_medium">
+            </div>
+        </div>
+        <hr>
+        </br>
+        <center>
+            <button ng-click="recepcionarGD()" id="enviaoc" name="btnenviaoc" class="btn-medium hvr-shrink">
+                <img src="img/icon-next.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top:7px;">Recepcionar</span>
+            </button>
+        </center>
+    </form>
+    </br>
+    </br>
+    <!--Modal-->
+    <div id="myModal" role="dialog" ng-class="showM">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">SAP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <span class="txt-cabecera">Recepción Exitosa</span></center>
+                    <div class="modal-datagrid center-block">
+                        <table>
+                            <tbody>
+                                <tr ng-if="errores.length==0">
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">N. GUÍA</td>
+                                    <td>{{ recepcionSeleccionada.nGuia }}</td>
+                                </tr>
+                                <tr ng-if="respOC!=''">
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">NÚMERO DE PEDIDO</td>
+                                    <td>{{ respOC }}</td>
+                                </tr>
+                                <tr ng-if="nDoc!=''">
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">NÚMERO DE DOCUMENTO</td>
+                                    <td>{{ nDoc }}</td>
+                                </tr>
+                                <tr ng-if="respCP!=undefined">
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">RECEPCIÓN CONTRA PEDIDO</td>
+                                    <td>{{ respCP }}</td>
+                                </tr>
+                                <tr ng-repeat="val in errores track by $index">
+                                    <td>{{val.titulo }}</td>
+                                    <td>{{val.descripcion}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </br>
+                    </br>
+                    <button ng-click="cerrarModal()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-medium center-block">
+                        <img src="img/icon-enviar.png" class="icon-btn">
+                        <span class="lbl-btn-stretch" style="margin-top: 7px;">Cerrar</span>
+                    </button>
+                    </br>
+                    </br>
+                    </br>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--<div style="margin-top: -60%;display:none;" id="popup" class="modal-container center-block modal-content">
+        <div class="modal-header">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <span class="txt-cabecera">SAP</span>
+                </div>
+            </div>
+        </div>
+        </br>
+        <div class="modal-datagrid center-block">
+            <table>
+                <tbody>
+                    <tr ng-if="respOC!=''">
+                        <td style="text-align:left; padding-left: 26px; padding-right: 36px;">NÚMERO DE PEDIDO</td>
+                        <td>{{ respOC }}</td>
+                    </tr>
+                    <tr ng-if="respCP!=undefined">
+                        <td style="text-align:left; padding-left: 26px; padding-right: 36px;">RECEPCIÓN CONTRA PEDIDO</td>
+                        <td>{{ respCP }}</td>
+                    </tr>
+                    <tr ng-repeat="val in errores track by $index">
+                        <td>{{val.titulo }}</td>
+                        <td>{{val.descripcion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </br>
+        </br>
+        <button ng-click="redirctToMenu()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-medium center-block">
+            <img src="img/icon-enviar.png" class="icon-btn">
+            <span class="lbl-btn-stretch" style="margin-top: 7px;">Cerrar</span>
+        </button>
+        </br>
+        </br>
+        </br>
+    </div>-->
+    <!--Modal-->
+
+
+    <div id="myModal" role="dialog" class="modal show" ng-show="loader" style="top: 100px;">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-contentb">
+                <div class="modal-body">
+                    <center>
+                        <img src="./img/loader-200.gif" alt="">
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

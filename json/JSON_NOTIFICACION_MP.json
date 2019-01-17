@@ -1,0 +1,29 @@
+{
+    "BAPI": " BAPI_REPMANCONF1_CREATE_MTS",
+    "PARAMETROS": {
+        "FLAGS": {
+            "BCKFLTYPE": "01",
+            "RP_SCRAPTYPE": "",
+            "ACTIVITIES_TYPE": "1",
+            "COMPONENTS_TYPE": "1"
+        },
+        "DATAGEN": {
+            "PDC_NUMBER": "",
+            "MATERIALNR": "000000000004001217",
+            "PRODPLANT": "1500",
+            "PLANPLANT": "1500",
+            "STORAGELOC": "104 ",
+            "PRODVERSION": "V0_3",
+            "PRODLINE": "",
+            "BATCH": " ",
+            "POSTDATE": "20181105",
+            "DOCDATE": "20181105",
+            "DOCHEADERTXT": "P_01",
+            "BACKFLQUANT": 6000,
+            "SCRAPQUANT": "0,0000",
+            "UNITOFMEASURE": "KG"
+        },
+        "GOODSMOVEMENTS": [],
+        "CHARACTERISTICS_BATCH": []
+    }
+}

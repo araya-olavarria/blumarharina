@@ -1,0 +1,195 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="descargaMP">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory();">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">DESCARGA DE MATERIA PRIMA</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='descarga-mp'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <center>
+                    <input type="radio" name="trans" ng-change="tipoDescarga()" id="checkdirecta" ng-model="trans" value="directa" class="reidio">
+                    <label for="checkdirecta" class="lbl-campos">PROPIA</label>
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <center>
+                    <input type="radio" name="trans" id="checkcamion" ng-change="tipoDescarga()" ng-model="trans" value="camion" class="reidio">
+                    <label for="checkcamion" class="lbl-campos">ARTESANAL</label>
+                </center>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <center>
+                    <input type="radio" name="trans" id="checkterceros" ng-change="tipoDescarga()" ng-model="trans" value="terceros" class="reidio">
+                    <label for="checkterceros" class="lbl-campos">ARTESANAL DIRECTA</label>
+                </center>
+            </div>
+        </div>
+        </br>
+        <hr>
+        <!--<div class="row" ng-hide="directa">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <center>
+                    <input type="checkbox" name="trans" ng-click="directa=true" id="checkdirecta" ng-model="solicitudPedido" value="directa" class="reidio">
+                    <label for="checkdirecta" class="lbl-campos">Nueva embarcación</label>
+                </center>
+            </div>
+        </div>-->
+        <div class="row" ng-hide="solicitudPedido">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Nombre Embarcación</span></br>
+                <input type="text" id="embarcaciones" name="embarcacion" class="input_medium" ng-model="embarcacion">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Proveedor</span></br>
+                <input type="text" class="input_medium" id="proveedores" ng-model="proveedor" ng-disabled="directa">
+                <!--<select name="proveedor" class="combo-medium" ng-model="proveedor" ng-options="item as item.nombre for item in proveedores | orderBy:'nombre' track by item.id">
+                    <option value="">Seleccione</option>
+                </select>-->
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Fecha Zarpe</span></br>
+                <input type="date" class="input_small" ng-model="fechaZarpe" id="fechZarpe" name="fechZarpe">
+                <input style="float:right;width: 103px;" type="time" class="input_small" ng-model="tiempoZarpe" id="TiempoZarpe" name="TiempoZarpe">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Comercializadora</span></br>
+                <input type="text" class="input_medium" ng-model="comercializadora" id="comercializadora" name="comercializadora" ng-disabled="directa">
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Fecha Recalada</span></br>
+                <input type="date" min="{{minDate}}" class="input_small" ng-model="fechaRecalada" id="fecharecalada" name="fecharecalada">
+                <input style="float:right;width: 103px;" type="time" class="input_small" ng-model="tiempoRecalada" id="tiempoRecalada" name="tiempoRecalada">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Fecha Descarga</span></br>
+                <input type="date" class="input_small" ng-model="fechaDescarga" id="fechadescarga" name="fechadescarga">
+                <input style="float:right;width: 103px;" type="time" class="input_small" ng-model="tiempoDescarga" id="tiempoDescarga" name="tiempoDescarga">
+            </div>
+        </div>
+        </br>
+        <!--<div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">RUT Destino</span></br>
+                <input ng-change="formatRut(rutDestino)" type="text" id="rutdestino" name="rutdestino" ng-model="rutDestino" class="input_medium">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Planta</span></br>
+                <input ng-model="planta" type="text" class="input_medium" id="plantas" />
+                <select name="planta" class="combo-medium" ng-model="planta" ng-options="item as item.nombre for item in plantas | orderBy: 'id' track by item.id">
+                    <option value="">Seleccione</option>
+                </select>
+            </div>
+        </div>-->
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Muelle Descarga</span></br>
+                <input type="text" class="input_calendar" ng-model="muelleDescarga" id="muelleDescarga" name="muelleDescarga">
+            </div>
+            <!--<div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Romana</span></br>
+                <select name="proveedor" class="combo-medium" ng-model="romana" ng-disabled="directa">
+                    <option value="" selected>Elija la Romana</option>
+                    <option value="romana1">Romana 1</option>
+                    <option value="romana2">Romana 2</option>
+                    <option value="romana3">Romana 3</option>
+                    <option value="romana4">Romana 4</option>
+                </select>
+            </div>-->
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">N° Activación</span></br>
+                <input type="text" id="sernapesca" name="sernapesca" ng-model="nActivacion" class="input_medium">
+            </div>
+        </div>
+        </br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Material</span><br>
+                <select name="material" ng-model="material" class="combo-medium" ng-options="item as item.material for item in materialesJson track by item.id">
+                    <option value="" selected>Seleccione Material</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Kilos</span><br>
+                <input type="number" id="toneladas" ng-model="toneladas" name="toneladas" class="input_medium">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">
+                <span class="lbl-campos">Planta</span></br>
+                <input type="text" id="plantas" name="plantas" ng-model="planta" class="input_medium">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6" style="text-align:center;">&nbsp;</div>
+        </div>
+        <br>
+        <hr>
+        <br><br>
+        <center>
+            <button ng-click="redirectNext()" type="button" id="enviaoc" name="btnenviaoc" class="btn-medium hvr-shrink">
+                <img src="img/icon-next.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top:7px;">CONTINUAR</span>
+            </button>
+        </center>
+        <br><br><br>
+    </form>
+    <!--Modal-->
+    <div id="myModal" role="dialog" ng-class="showM">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="width:100%;">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="txt-cabecera">{{ tipoMsg }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-datagrid center-block">
+                        <table>
+                            <tbody>
+                                <tr ng-repeat="item in msg">
+                                    <td style="text-align:left; padding-left: 26px; padding-right: 36px;">DESCRIPCIÓN</td>
+                                    <td>{{ item.descripcion }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </br>
+                    </br>
+                    <button ng-click="cerrarModal()" type="submit" id="enviaresumen" name="btnenviaresumen" class="btn-medium center-block">
+                        <img src="img/icon-enviar.png" class="icon-btn">
+                        <span class="lbl-btn-stretch" style="margin-top: 7px;">Cerrar</span>
+                    </button>
+                    </br>
+                    </br>
+                    </br>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

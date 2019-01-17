@@ -1,0 +1,111 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">MATERIA PRIMA</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='notifmp'>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <span class="lbl-campos">Fecha Notificación</span><br>
+                <input type="date" class="input_medium" ng-model="fechaNot" id="fechanotif" style="margin: 0 10px !important;">
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <span class="lbl-campos">Hora Notificación</span><br>
+                <input type="time" class="input_medium" ng-model="horaNot" value="{{horaNot | date:'H:m'}}" id="fechanotif" style="margin: 0 10px !important;">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <span class="lbl-campos">Lotes</span><br>
+                <select name="lote" class="combo-medium">
+                    <option value="elijeproc" selected>Seleccione Lote</option>
+                    <option value="svicente">Lote 1</option>
+                    <option value="lejano">Lote 2</option>
+                    <option value="alla">Lote 3</option>
+                </select>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">Porción</span><br>
+                    <input type="number" class="input_medium" id="porcion" style="margin: 0 10px !important;" disabled>
+                </center>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 migo">
+                <center>
+                    <span class="lbl-campos">Material</span><br>
+                    <input type="text" class="input_medium" id="matemp" style="margin: 0 10px !important;" disabled>
+                </center>
+            </div>
+        </div>
+        <hr>
+        <div class="container-tabla center-block table-responsive">
+            <div class="datagrid ">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>MATERIAL</th>
+                            <th>KILOS</th>
+                            <th>ALMACÉN</th>
+                            <th>LOTE</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="number" id="material" name="lote" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <input type="number" id="kilos" name="porcion" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <input type="number" id="almacengrid" name="almacen" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <input type="number" id="lotegrid" name="almacen" class="input_small-stretch" disabled>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <img src="img/btn-mas.png">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <img src="img/btn-borrar.png">
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        </br>
+        <center>
+            <button type="submit" id="nextmp" name="nextpt" class="btn-medium hvr-shrink">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">CONSUMIR</span>
+            </button>
+        </center>
+    </form>
+    <br><br>
+</div>

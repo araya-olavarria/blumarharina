@@ -1,0 +1,60 @@
+<div id="stack1" class="modal fade in opopup-form" tabindex="-1" ng-show="opopup.show" data-width="400" style="display: block; padding-right: 15px;">
+    <div class="modal-dialog">
+        <div class="modal-content" style="{{opopup.tamPopup}}">
+            <div id="titulo">{{opopup.titulo}} <span class="total-ingreso">{{opopup.totalCodigo}}</span><span ng-hide="opopup.hidePrint" onclick="window.print();return false;" class="{{opopup.iconPrint || 'fa fa-print icon-print'}}"></span></div>
+            <div class="form-body col-xs-12 col-sm-12 col-md-12 cont-body">
+                <table class="table table-striped table-bordered table-hover">
+                    <tr ng-repeat="items in opopup.arrResumen.colum track by $index">
+                        <th scope="col" ng-repeat="item in items track by $index">
+                            <span ng-if="item.type=='label'">{{ item.value}}</span>
+                            <span ng-if="item.type=='checkbox'"><input type="{{item.type}}" ng-model="item.ngModel" ng-hide="item.visible"  ng-click="item.eventCLick(item)"></span>
+                        </th>
+                    </tr>
+                    <tr ng-repeat="items in opopup.arrResumen.row track by $index">
+                        <td ng-repeat="item in items track by $index">
+                            <span ng-if="item.type=='label'" ng-click="item.evenClick(item.id,item.data)">{{item.type=="select"? item.name.DESCRIPTION : item.name || item.value}}</span>
+                            <span ng-if="item.type=='text'"><input type="{{item.type}}" style="{{item.style}}" maxlength="{{item.maxlength}}" ng-click="item.eventBlur()" ng-value="{{item.value}}" ng-model="item.ngModel"></span>
+                            <span ng-if="item.type=='number'"><input type="{{item.type}}" style="{{item.style}}" maxlength="{{item.maxlength}}" ng-click="item.eventBlur()" ng-value="{{item.value}}" ng-model="item.ngModel"></span>
+                            <span ng-if="item.type=='radio'"><input type="{{item.type}}" style="{{item.style}}" maxlength="{{item.maxlength}}" ng-click="item.eventBlur()" ng-value="{{item.value}}" ng-model="item.ngModel"></span>
+                            <span ng-if="item.type=='checkbox'"><input type="{{item.type}}" style="{{item.style}}" maxlength="{{item.maxlength}}" ng-click="item.eventBlur()" ng-value="{{item.value}}" ng-model="item.ngModel"></span>
+                            <span ng-if="item.type=='link'"><a href="{{item.ruta}}" target="_blank">{{item.value}}</a></span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="row form-group col-xs-6 col-sm-{{item.tam || '10'}} col-md-{{item.tam || '10'}}" ng-repeat="item in opopup.items">
+                    <div ng-if="item.type == 'text' || item.type == 'time' || item.type == 'number'">
+                        <label ng-hide="item.visible" class="row  col-sm-12 col-md-12" style="max-height: 30px;">{{item.caption||item.key}}</label>
+                        <div class="col-md-9">
+                            <span ng-if="item.iconBar" ng-click="item.scan(item)" class="fa fa-barcode cod-bar" aria-hidden="true"></span>
+                            <span class="{{item.iconLeft}}" ></span>
+                            <input ng-hide="item.visible" ng-blur="item.eventBlur(item);opopup.eventBlur(opopup);" maxlength="{{item.maxlength}}" type="{{item.type}}" id="{{item.id}}" ng-readonly="item.readonly"  maxlength="item.maxlength" class="form-control {{item.class}}" ng-value="{{item.ngValue}}" ng-class="item.classError"  ng-disabled="item.disabled" ng-keypress="($event.charCode==13)?item.eventEnter(item):return;"  ng-model="item.ngModel" placeholder="{{item.placeholder||''}}" >
+                            <span class="{{item.iconRight}}" ></span>
+                        </div>
+                    </div>
+                    <div ng-if="item.type == 'date'">
+                        <label ng-hide="item.visible" class="row  col-sm-12 col-md-12">{{item.caption||item.key}}</label>
+                        <div class="col-md-9">
+                            <span ng-if="item.iconBar" class="fa fa-barcode cod-bar" aria-hidden="true"></span><input ng-hide="item.visible" ng-blur="item.eventBlur(item);opopup.eventBlur(opopup);" maxlength="{{item.maxlength}}" ui-date="item.dateOptions" type="text" id="{{item.id}}" ng-readonly="item.readonly"  maxlength="item.maxlength" class="form-control {{item.class}}" ng-value="{{item.ngValue}}" ng-class="item.classError"  ng-disabled="item.disabled" ng-keypress="($event.charCode==13)?item.eventEnter(item):return;"  ng-model="item.ngModel" placeholder="{{item.placeholder||''}}" >
+                        </div>
+                    </div>
+                </div>
+                <div class="listado-codigos">
+                    <div ng-repeat="codigo in opopup.codigos track by $index" class="lista-codigo">
+                        <div>{{codigo}}<span class="glyphicon glyphicon-remove  delete-cod" ng-click="opopup.deleteRow($index)"></span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn dark btn-outline" data-dismiss="modal" ng-hide="opopup.confirm" ng-click="opopup.show=false">Cerrar</button>
+                <button type="button" class="btn green" ng-click="opopup.show=false;opopup.continue()">{{opopup.acceptTextButton||'Aceptar'}}</button>
+            </div>
+        </div>
+    </div>
+    <style>
+        @media print{
+            #stack1{
+                background-color: #fff !important;
+            }
+        }
+    </style>
+</div>

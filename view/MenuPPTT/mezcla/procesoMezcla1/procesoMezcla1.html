@@ -1,0 +1,78 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">PROCESO MEZCLADO - PAGINA 1</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <!--Modal-->
+    <div>
+        <div id="myModal" role="dialog" ng-class="showM">
+            <div class="modal-dialog" style="width: 750px;">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container-tabla center-block table-responsive">
+                            <div class="datagrid ">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>FOLIO</th>
+                                            <th>LOTE</th>
+                                            <th>PORCION</th>
+                                            <th>MATERIAL</th>
+                                            <th>KG</th>
+                                            <th>EMPAQUE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in formulario track by $index">
+                                        <!-- <tr ng-repeat="sLote in listaLote[0].subLote by track"> -->
+                                            <td>{{formulario.folio}}</td>
+                                            <td>{{formulario.lote}}</td>
+                                            <td>{{formulario.porcion}}</td>
+                                            <td>{{formulario.material}}</td>
+                                            <td>{{formulario.kiloG}}</td>
+                                            <td>{{formulario.empaque}}</td>
+                                            <button ng-click="btnModifPag2()" type="submit" id="btnModifPag2" name="btnModifPag2"
+                                                class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                                <img src="img/icon-ok.png" class="icon-btn">
+                                                <span class="lbl-btn-stretch" style="margin-top: 8px;">MODIF</span>
+                                            </button>
+                                            <button ng-click="btnMezclarPag2()" type="submit" id="btnMezclarPag2" name="btnMezclarPag2"
+                                                class="btn-small center-block hvr-shrink" style="margin: 0 10px 10px 10px;">
+                                                <img src="img/icon-ok.png" class="icon-btn">
+                                                <span class="lbl-btn-stretch" style="margin-top: 8px;">MEZCLAR</span>
+                                            </button>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </br>
+                        <center>
+                            <button ng-click="btnAceptar2()" type="submit" id="btnAceptar2" name="btnAceptar2" class="btn-small center-block hvr-shrink"
+                                style="margin: 0 10px 10px 10px;">
+                                <img src="img/icon-ok.png" class="icon-btn">
+                                <span class="lbl-btn-stretch" style="margin-top: 8px;">ACEPTAR</span>
+                            </button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

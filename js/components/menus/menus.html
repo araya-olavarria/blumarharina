@@ -1,0 +1,46 @@
+<div ng-show="omenus.show" class="portlet box {{omenus.color||'purple'}} col-xs-12 col-sm-12 col-md-12">
+    <div class="portlet-title">
+        <div class="tools" ng-click="exit()">
+            <i class="fa fa-power-off icon-menu icon-off"  aria-hidden="true"></i>
+        </div>
+        <div class="caption">
+            <i class="fa fa-arrow-circle-left icon-menu" aria-hidden="true" ng-hide="omenus.hideBack" ng-click="omenus.volver()"></i>
+        <div class="title">{{omenus.title}}</div></div>
+    </div>
+</div>
+<div class="table-responsive" ng-show="omenus.headTable">
+    <table class="table table-bordered table-striped table-condensed flip-content">
+        <thead class="flip-content">
+            <tr>
+                <th ng-repeat="item in omenus.information.colum track by $index">{{item.colum}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td ng-repeat="item in omenus.information.row track by $index" class="numeric">{{item.row}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-repeat="item in omenus.items">
+    <div ng-show="((['text','date','time','number'].indexOf(item.type)>-1)?true:false)">
+        <label ng-hide="item.visible"  class="col-md-3 control-label" style="max-height: 48px;">{{item.caption||item.key}}</label>
+        <div class="col-md-10">
+            <input ng-hide="item.visible" ng-readonly="item.readonly" id="{{item.id}}" type="{{item.type}}" maxlength="item.maxlength" class="form-control {{item.class}}" ng-class="item.classError"  ng-disabled="item.disabled" ng-model="item.ngModel" placeholder="{{item.placeholder||''}}"> 
+        </div>
+    </div>
+    <div ng-if="((item.type==='select')?true:false)" >
+        <label ng-hide="item.visible" class="col-md-3 control-label">{{item.caption||item.key}}</label>
+        <div class="col-md-10">
+            <select ng-hide="item.visible" class="form-control {{item.classError}}"  ng-model="item.ngModel" width="item.width"  ng-disabled="item.disabled" ng-options="option as option.text||option.DESCRIPTION for option in item.options track by option.VALUE_CHAR">
+            </select>
+        </div>
+    </div>
+</div>
+<div class="{{item.classMenu || 'list-group'}}" ng-repeat="item in omenus.items track by $index">
+    <div class="contenido-menu"  ng-show="((item.type==='button')?true:false)">
+        <button type="button" ng-hide="item.visible"  class="{{item.classBtn || 'list-group-item'}}" ng-click="item.click()">
+            {{item.nombre}} <span class="{{item.iconRow || 'glyphicon glyphicon-menu-right row-icon'}}"><span ng-if="item.kilos!=''" class="{{item.classKilos}}">{{item.kilos}}</span></span><p></p>
+        </button>
+    </div>
+</div>

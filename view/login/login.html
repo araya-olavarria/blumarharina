@@ -1,0 +1,27 @@
+<!--<ag1-loading oloading="oloading"></ag1-loading>-->
+<div class="login-window center-block" ng-controller="Login">
+    <div class="row">
+        <div class="col-md-6 col-xs-12 col-sm-6">
+            <img src="./img/logo.png" class="logo-login" />
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <p class="txt-login">
+                ACCESO USUARIOS
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <form id="login">
+            <div class="col-md-12 col-xs-12">
+                <input class="input_large center-block" type="text" ng-model="user" id="user" placeholder="Ingrese Usuario" style="margin-bottom: 20px;">
+            </div>
+            </br>
+            <div class="col-md-12 col-xs-12">
+                <input class="input_large center-block" type="password" ng-model="pass" id="pass" placeholder="Ingrese Password" style="margin-bottom: 20px;">
+            </div>
+            </br>
+            </br>
+            <button class="btn_ingreso center-block" ng-click="acceder(user,pass)">ENTRAR</button>
+        </form>
+    </div>
+</div>

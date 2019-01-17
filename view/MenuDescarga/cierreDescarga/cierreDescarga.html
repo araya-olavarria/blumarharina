@@ -1,0 +1,77 @@
+<div id="contenedor" class="contenedor center-block">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="#" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">CIERRE DESCARGA</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="index.html">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <form id='cierredescarga'>
+        <div class="row">
+            <center>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <h4 class="lbl-campos">Embarcación: {{seleccionCierre.embarcacion}}</h4>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <h4 class="lbl-campos">N° OC: {{seleccionCierre.oc}}</h4>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <h4 class="lbl-campos">Fecha Reclada: {{seleccionCierre.fechaRecalada | formatFecha}}</h4>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    &nbsp;
+                </div>
+            </center>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 migo" ng-show="{{!item.hide}}" ng-repeat="item in Formulario track by $index">
+                <div ng-show="((['text', 'number'].indexOf(item.type) > -1) ? true : false)">
+                    <!--<h3 style="font-size: 12px;">{{item.label||item.key}}</h3>-->
+                    <span class="lbl-campos">{{item.label||item.key}}</span><br>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                    <input type="{{item.type}}" id="{{item.id}}" ng-model="item.ngModel" max="{{item.max}}" placeholder="{{item.placeholder}}"
+                        maxlength="{{item.max}}" class="input_medium" ng-disabled="{{item.disabled}}" ng-blur="fn_((item.fn)?item.fn:'',$index)">
+                    <!--</div>-->
+                </div>
+                <div ng-show="((item.type === 'select') ? true : false)">
+                    <span class="lbl-campos">{{item.label||item.key}}</span><br>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                    <select class="combo-medium" ng-model="item.ngModel" ng-options="option as option.text || option.value for option in item.options track by option.key"
+                        ng-change="fn(item.fn,item.ngModel)">
+                        <option value=''>Seleccionar</option>
+                    </select>
+                    <!--</div>-->
+                </div>
+                <div ng-show="((['time', 'date'].indexOf(item.type) > -1) ? true : false)">
+                    <span class="lbl-campos">{{item.label||item.key}}</span><br>
+                    <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+                    <input type="{{item.type}}" id="{{item.id}}" ng-model="item.ngModel" placeholder="{{item.placeholder}}"
+                        class="input_medium">
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <center>
+            <button ng-click="Validate_Form()" id="nextpt" name="nextpt" class="btn-medium hvr-shrink">
+                <img src="img/icon-next.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">CONTINUAR</span>
+            </button>
+        </center>
+    </form>
+    <br><br>
+</div>

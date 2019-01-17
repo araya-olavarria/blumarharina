@@ -1,0 +1,9 @@
+{
+    "BAPI": "BAPI_PO_CHANGE",
+    "RUNTEST": "false",
+    "PARAMETROS": {
+        "PEDIDO": "",
+        "FINAL": "",
+        "MATERIALES": []
+    }
+}

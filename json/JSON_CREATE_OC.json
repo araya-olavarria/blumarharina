@@ -1,0 +1,19 @@
+{
+    "OBJETOENTRADA": [{
+        "BAPI": "BAPI_PO_CREATE1",
+        "RUNTEST": "false",
+        "PARAMETROS": {
+            "FECHA": "20181015",
+            "MATERIALES": [],
+            "CENTRO": "1020",
+            "ALMACEN": "100",
+            "SOCIEDAD": "1000",
+            "CLASE_PEDIDO": "ZNB",
+            "PRODUCTOR": "0000500115",
+            "ORG_COMPRA": "1000",
+            "GRUPO_COMPRA": "110",
+            "SUBCONTRATACION": "false",
+            "BATCH": ""
+        }
+    }]
+}

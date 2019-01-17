@@ -1,0 +1,42 @@
+<div id="stack1" class="modal fade in" tabindex="-1" ng-show="obluetooth.show" data-width="400" style="display: block; padding-right: 15px;">
+    <div class="modal-dialog" style="min-height:400px">
+        <div class="modal-content" style="min-height:400px">
+            <div id="titulo">{{obluetooth.titulo}} <span ng-click="obluetooth.show=false" class="glyphicon glyphicon-remove-sign close-bluetooth"></span></div>
+            <link rel="stylesheet" type="text/css" href="http://ddcqas.expled.cl/ddc2/css/bootstrap.min.css" media="screen">
+            <div  class="popup-productor">
+                <div class="cerrar-popup" ng-click="hideBluetooth()"></div>
+                <div class="header-popup">
+                    <div id="resultBtData"></div>
+                    <div id="divBluetoothState"></div>
+                </div>
+                <div class="box-inp-productor">
+                    <div class="appSection">
+                        <!-- On and Off buttons -->
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <button id="btn-bsbt-bt-on" type="button" class="btn-bsbt btn-bsbt-success btn-bsbt-lg btn-bsbt-block btn-bsbt-bt btn col-md-12 green-meadow" disabled >
+                                    Encender BT
+                                </button>
+                            </div>
+                            <div class="col-xs-6">
+                                <button id="btn-bsbt-bt-off" type="button" class="btn-bsbt btn-bsbt-danger btn-bsbt-lg btn-bsbt-block btn-bsbt-bt btn col-md-12 red-sunglo" disabled >
+                                    Apagar BT
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Discovery button -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button id="btn-bsbt-bt-discover" style="margin-top: 7px;" type="button" class="btn-bsbt btn-bsbt-info btn-bsbt-lg btn-bsbt-block btn-bsbt-bt" data-loading-text="Buscando..." disabled >
+                                    <span class="glyphicon glyphicon-eye-open" style="float: left;"></span>Buscar Dispositivos
+                                </button>
+                            </div>
+                        </div>
+                        <!-- The found devices appear inside this div -->
+                        <div id="list-devices"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

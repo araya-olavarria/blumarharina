@@ -1,0 +1,43 @@
+{
+    "OBJETOENTRADA": [{
+            "BAPI": "BAPI_GOODSMVT_CREATE",
+            "PARAMETROS": {
+                "ALMACEN": "104 ",
+                "ALMACENDESTINO": "P01 ",
+                "CENTRO": "1500",
+                "CENTRO_DESTINO": "1050",
+                "CODE": "04",
+                "CONTRAORDEN": "false",
+                "CONTRAPEDIDO": "false",
+                "FECHA": "20181220",
+                "GUIA": "312312",
+                "MATERIALES": [],
+                "MOVIMIENTO": 301,
+                "PEDIDO": "",
+                "RESULTADO_BAPI": true,
+                "TIPO_STOCK": ""
+            },
+            "RUNTEST": "false"
+        },
+        {
+            "BAPI": "BAPI_GOODSMVT_CREATE",
+            "PARAMETROS": {
+                "ALMACEN": "104 ",
+                "ALMACENDESTINO": "P01 ",
+                "CENTRO": "1500",
+                "CENTRO_DESTINO": "1050",
+                "CODE": "04",
+                "CONTRAORDEN": "false",
+                "CONTRAPEDIDO": "false",
+                "FECHA": "20181220",
+                "GUIA": "312312",
+                "MATERIALES": [],
+                "MOVIMIENTO": 301,
+                "PEDIDO": "",
+                "RESULTADO_BAPI": true,
+                "TIPO_STOCK": ""
+            },
+            "RUNTEST": "false"
+        }
+    ]
+}

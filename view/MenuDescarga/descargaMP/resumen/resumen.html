@@ -1,0 +1,173 @@
+<div id="contenedor" class="contenedor center-block" ng-controller="resumenDescarga">
+    <div class="cabecera">
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:left;">
+                <a href="" ng-click="backHistory()">
+                    <img src="img/icon-atras.png" class="icon-cabecera hvr-backward" />
+                </a>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 text-center">
+                <span class="txt-cabecera">RESUMEN</span>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2" style="text-align:right;">
+                <a href="" ng-click="exit()">
+                    <img src="img/icon-salir.png" class="icon-cabecera hvr-forward" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1><img src="img/icon-clipboard.png" class="icon-btn">Detalle</h1>
+    </div>
+    </br>
+    <div class="datagrid center-block hidden-xs hidden-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>FOLIO SERNAPESCA</th>
+                    <th>FECHA RECALADA</th>
+                    <th>FECHA DESCARGA</th>
+                    <th>RUT DESTINO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ folioSerna }}</td>
+                    <td>{{ fechaRecalada }}</td>
+                    <td>{{ fechaDescarga }}</td>
+                    <td>{{ rutDestino }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datagrid center-block hidden-xs hidden-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>PROVEEDOR</th>
+                    <th>EMBARCACIÓN</th>
+                    <th>MATERIAL</th>
+                    <th>KILOS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ proveedor }}</td>
+                    <td>{{ embarcacion }}</td>
+                    <td>{{ material }}</td>
+                    <td>{{ toneladas }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datagrid center-block hidden-xs hidden-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>ROMANA</th>
+                    <th>PLANTA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ romana }}</td>
+                    <td>{{ planta }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Aqui parte la tabla para moviles -->
+    <div class="datagrid center-block visible-xs visible-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>FOLIO SERNAPESCA</th>
+                    <th>FECHA RECALADA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ folioSerna }}</td>
+                    <td>{{ fechaRecalada }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datagrid center-block visible-xs visible-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>FECHA DESCARGA </th>
+                    <th>RUT DESTINO </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ fechaDescarga }}</td>
+                    <td>{{ rutDestino }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datagrid center-block visible-xs visible-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>PROVEEDOR</th>
+                    <th>EMBARCACIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ proveedor }}</td>
+                    <td>{{ embarcacion }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datagrid center-block visible-xs visible-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th>MATERIAL</th>
+                    <th>KILOS</th>
+                    <th>ROMANA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ material }}</td>
+                    <td>{{ toneladas }}</td>
+                    <td>{{ romana }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="datagrid center-block visible-xs visible-sm">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:278px !important;"> PLANTA </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <center>
+                        <td style="width:278px !important;">{{ planta }}</td>
+                    </center>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </br>
+    </br>
+    <center>
+        <button type="submit" id="enviaresumen" name="btnenviaresumen" class="hvr-shrink btn-small">
+                <img src="img/icon-enviar.png" class="icon-btn">
+                <span class="lbl-btn-stretch" style="margin-top: 7px;">ENVIAR</span>
+            </button>
+    </center>
+    </br>
+    </br>
+    </br>
+</div>
